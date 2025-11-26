@@ -17,8 +17,7 @@ const solutions = [
     hasCross: true,
     gradient: 'from-purple-500 to-pink-500',
     iconBg: 'bg-purple-500/20',
-    borderColor: 'border-purple-500/30',
-    scale: 1,
+    borderColor: 'border-purple-500/30'
   },
   {
     name: 'No-Code VR Development',
@@ -28,7 +27,7 @@ const solutions = [
     gradient: 'from-blue-500 to-cyan-500',
     iconBg: 'bg-blue-500/20',
     borderColor: 'border-blue-500/30',
-    scale: 1.3,
+    scale: 'scale-125',
   },
   {
     name: 'Realistic VR Simulations',
@@ -38,7 +37,6 @@ const solutions = [
     gradient: 'from-teal-500 to-emerald-500',
     iconBg: 'bg-teal-500/20',
     borderColor: 'border-teal-500/30',
-    scale: 1,
   },
 ];
 
@@ -69,8 +67,8 @@ function SolutionCard({ solution, index }: { solution: typeof solutions[0]; inde
             <Lottie
               animationData={solution.animation}
               loop={true}
-              className={`w-full h-full scale-[${solution.scale}]`}
-            />
+              className={`w-full h-full ` + (solution.scale ? `scale-125` : '')}
+            /> 
           </div>
 
           {/* Cross Sign Overlay */}
