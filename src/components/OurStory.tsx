@@ -42,7 +42,7 @@ export default function OurStory() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-emerald-300 bg-clip-text text-transparent">
+              <h2 className="text-5xl h-20 md:text-6xl font-bold bg-linear-to-r from-white to-emerald-300 bg-clip-text text-transparent">
                 Our Story
               </h2>
             </motion.div>

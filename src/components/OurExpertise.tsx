@@ -115,41 +115,106 @@ export default function OurExpertise() {
           ))}
         </div>
 
-        {/* Skills Section */}
+        {/* Skills Section - Redesigned */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ delay: 0.8, duration: 0.6 }}
-          className="relative"
+          className="relative mt-20"
         >
-          <div className="bg-linear-to-br from-[#073030]/40 to-[#0a4444]/40 backdrop-blur-sm p-8 rounded-3xl border border-teal-500/20">
-            <div className="text-center mb-6">
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                Evaluating Non-Technical Skills
-              </h3>
-              <p className="text-gray-400">
-                Our AI models objectively assess essential human competencies
-              </p>
-            </div>
+          {/* Gradient background orbs */}
+          <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-linear-to-br from-teal-500/20 via-cyan-500/20 to-blue-500/20 rounded-full blur-3xl -z-10 opacity-50" />
+          
+          <div className="text-center mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.9, duration: 0.6 }}
+              className="inline-block mb-4"
+            >
+              <span className="text-sm font-semibold text-teal-400 uppercase tracking-wider px-4 py-2 bg-teal-500/10 rounded-full border border-teal-500/30">
+                Skills Assessment
+              </span>
+            </motion.div>
+            
+            <motion.h3
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 1.0, duration: 0.6 }}
+              className="text-2xl md:text-3xl font-bold mb-2 bg-linear-to-r from-white via-teal-200 to-cyan-300 bg-clip-text text-transparent"
+            >
+              Evaluating Non-Technical Skills
+            </motion.h3>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 1.1, duration: 0.6 }}
+              className="text-lg text-gray-400 max-w-3xl mx-auto"
+            >
+              Our AI models objectively assess essential human competencies through immersive scenarios
+            </motion.p>
+          </div>
 
-            {/* Skills Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {skills.map((skill, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                  transition={{ delay: 0.9 + index * 0.1, duration: 0.4 }}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  className="flex flex-col items-center gap-2 p-4 bg-linear-to-br from-teal-500/10 to-cyan-500/10 rounded-xl border border-teal-500/20 hover:border-teal-500/40 transition-all duration-300"
-                >
-                  <skill.icon className="text-3xl text-teal-400" />
-                  <span className="text-xs text-gray-300 text-center leading-tight">
-                    {skill.text}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
+          {/* Skills Grid - Single horizontal line */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 justify-center w-full gap-4 sm:gap-6">
+            {skills.map((skill, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.9 }}
+                transition={{ 
+                  opacity: { delay: 1.2 + index * 0.1, duration: 0.5 },
+                  y: { delay: 1.2 + index * 0.1, duration: 0.5 },
+                  scale: { duration: 0.2 }
+                }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -8,
+                  transition: { duration: 0.2 }
+                }}
+                className="group relative w-full"
+              >
+                {/* Hover glow effect */}
+                <div className="absolute inset-0 bg-linear-to-br from-teal-500/30 via-cyan-500/30 to-blue-500/30 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl -z-10" />
+                
+                {/* Card */}
+                <div className="relative bg-linear-to-br from-[#0a0a0a]/80 via-[#0d1f1f]/80 to-[#0a0a0a]/80 backdrop-blur-md p-4 rounded-2xl border border-teal-500/20 group-hover:border-teal-400/50 transition-all duration-300 h-full">
+                  {/* Animated gradient border effect */}
+                  <motion.div
+                    className="absolute inset-0 rounded-2xl bg-linear-to-br from-teal-500/0 via-cyan-500/0 to-blue-500/0 group-hover:from-teal-500/10 group-hover:via-cyan-500/10 group-hover:to-blue-500/10 transition-all duration-300"
+                    whileHover={{ scale: 1.02 }}
+                  />
+                  
+                  <div className="relative flex flex-col items-center text-center gap-2">
+                    {/* Icon container with animated ring */}
+                    <div className="relative">
+                      <motion.div
+                        className="absolute inset-0 rounded-full bg-linear-to-br from-teal-500 to-cyan-500 opacity-20 group-hover:opacity-40 transition-opacity duration-300"
+                        animate={{
+                          scale: [1, 1.2, 1],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: 'easeInOut',
+                        }}
+                      />
+                      <div className="relative bg-linear-to-br from-teal-500/20 to-cyan-500/20 p-4 rounded-full border border-teal-500/30 group-hover:border-teal-400/60 transition-all duration-300">
+                        <skill.icon className="text-2xl sm:text-3xl text-teal-400 group-hover:text-teal-300 transition-colors duration-300" />
+                      </div>
+                    </div>
+
+                    {/* Text */}
+                    <div>
+                      <h4 className="text-sm lg:text-lg font-semibold text-gray-200 group-hover:text-white transition-colors duration-300 whitespace-nowrap">
+                        {skill.text}
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </div>
