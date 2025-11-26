@@ -1,36 +1,166 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CraftXR - Official Website
 
-## Getting Started
+## 🚀 About CraftXR
 
-First, run the development server:
+CraftXR is a revolutionary no-code VR development platform that empowers educators to create immersive 3D simulations for training students. Our platform features:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **EvalNTS**: AI-Evaluator for Non-technical Skills
+- **No-Code VR Development**: Intuitive drag-and-drop interface
+- **Realistic VR Simulations**: High-fidelity 3D environments
+
+## 🎨 Design Features
+
+### Color Scheme
+- **Primary Color**: `#073030` (Dark Teal)
+- **Secondary Colors**: Emerald (`#10b981`) and Teal (`#14b8a6`)
+- Beautiful gradient combinations throughout the site
+
+### Animations & Effects
+- **Particles.js Background**: Interactive particle system with 150 particles
+- **Framer Motion**: Smooth animations and transitions
+- **Gradient Animations**: Dynamic color shifts and glows
+- **Hover Effects**: Interactive elements with scale and glow effects
+- **Scroll Animations**: Elements animate in as you scroll
+
+## 🏗️ Project Structure
+
+```
+xr.io/
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx          # Root layout with metadata
+│   │   ├── page.tsx            # Main landing page
+│   │   └── globals.css         # Global styles and animations
+│   └── components/
+│       ├── ParticlesBackground.tsx  # Particles.js integration
+│       ├── Navbar.tsx               # Navigation bar
+│       ├── Hero.tsx                 # Hero section
+│       ├── Features.tsx             # Features showcase
+│       ├── About.tsx                # About section with stats
+│       ├── CTA.tsx                  # Call-to-action section
+│       └── Footer.tsx               # Footer with links
+├── public/                     # Static assets
+├── package.json
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📦 Technologies Used
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js 16**: React framework with App Router
+- **React 19**: Latest React version
+- **TypeScript**: Type-safe development
+- **Tailwind CSS v4**: Utility-first CSS framework
+- **Framer Motion**: Animation library
+- **TSParticles**: Particle background effects
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Getting Started
 
-## Learn More
+### Prerequisites
 
-To learn more about Next.js, take a look at the following resources:
+- Node.js 20+ installed
+- npm or yarn package manager
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd xr.io
+```
 
-## Deploy on Vercel
+2. Install dependencies:
+```bash
+npm install
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Run the development server:
+```bash
+npm run dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+### Build for Production
+
+```bash
+npm run build
+npm start
+```
+
+## 🎯 Key Features
+
+### ParticlesBackground Component
+- Configured with 150 particles
+- Move speed set to 3
+- Interactive on hover and click
+- White particles with semi-transparent links
+
+### Responsive Design
+- Mobile-first approach
+- Breakpoints for tablet and desktop
+- Touch-friendly interactions
+
+### Performance Optimizations
+- Server components where possible
+- Client components marked with 'use client'
+- Optimized animations with Framer Motion
+- Lazy loading of particle engine
+
+### Accessibility
+- Semantic HTML structure
+- ARIA labels where needed
+- Keyboard navigation support
+- High contrast text for readability
+
+## 🎨 Customization
+
+### Changing Colors
+
+Edit the color values in components to match your brand:
+- Primary: `#073030`
+- Emerald: `#10b981`, `#059669`
+- Teal: `#14b8a6`, `#0d9488`
+
+### Modifying Particles
+
+Adjust settings in `ParticlesBackground.tsx`:
+```typescript
+number: {
+  value: 150,  // Number of particles
+},
+move: {
+  speed: 3,    // Movement speed
+}
+```
+
+### Adding Sections
+
+Create new components in `src/components/` and import them in `src/app/page.tsx`.
+
+## 📱 Sections Overview
+
+1. **Navbar**: Sticky navigation with scroll effect
+2. **Hero**: Main landing section with CTA buttons
+3. **Features**: Showcase of 3 core features
+4. **About**: Company information with statistics
+5. **CTA**: Call-to-action section
+6. **Footer**: Links, newsletter, and social media
+
+## 🔧 Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
+
+## 📄 License
+
+© 2025 CraftXR. All rights reserved.
+
+## 🤝 Contributing
+
+This is the official CraftXR website. For contributions or suggestions, please contact the development team.
+
+---
+
+Built with ❤️ for educators worldwide
