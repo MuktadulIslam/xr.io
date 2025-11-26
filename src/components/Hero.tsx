@@ -52,7 +52,13 @@ export default function Hero() {
             >
               <span className="relative z-10 flex items-center gap-2">
                 Explore More
-                <span className="text-3xl group-hover:translate-x-1 transition-transform duration-300">→</span>
+                <motion.span
+                  className="text-3xl"
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                >
+                  →
+                </motion.span>
               </span>
               {/* Subtle hover gradient effect */}
               <div className="absolute inset-0 bg-linear-to-r from-emerald-500/0 via-emerald-500/10 to-teal-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
