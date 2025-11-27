@@ -27,7 +27,7 @@ export default function Home() {
       <About /> */}
       {/* <CTA /> */}
       {/* <Footer /> */}
-      <StickyTalkingModel />
+      {/* <StickyTalkingModel /> */}
     </main>
   );
 }

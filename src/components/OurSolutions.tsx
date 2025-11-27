@@ -14,7 +14,6 @@ const solutions = [
     name: 'EvalNTS: AI-Evaluator for Non-technical Skills',
     description: 'AI-evaluation for context-specific non-technical skills, providing valuable insights for personalized growth and team efficiency.',
     animation: technicalSkillsAnimation,
-    hasCross: true,
     gradient: 'from-purple-500 to-pink-500',
     iconBg: 'bg-purple-500/20',
     borderColor: 'border-purple-500/30'
@@ -23,7 +22,6 @@ const solutions = [
     name: 'No-Code VR Development',
     description: 'A web-platform to create VR-ready and scenario-based simulated learning environments without the need for extensive coding, ensuring a seamless and efficient development process.',
     animation: codingAnimation,
-    hasCross: true,
     gradient: 'from-blue-500 to-cyan-500',
     iconBg: 'bg-blue-500/20',
     borderColor: 'border-blue-500/30',
@@ -33,7 +31,6 @@ const solutions = [
     name: 'Realistic VR Simulations',
     description: 'Virtual Reality simulations replicating realistic healthcare-specific scenarios which are rare and difficult to deal with.',
     animation: virtualRealityAnimation,
-    hasCross: false,
     gradient: 'from-teal-500 to-emerald-500',
     iconBg: 'bg-teal-500/20',
     borderColor: 'border-teal-500/30',
@@ -60,7 +57,7 @@ function SolutionCard({ solution, index }: { solution: typeof solutions[0]; inde
       <div className={`absolute inset-0 bg-linear-to-br ${solution.gradient} opacity-0 group-hover:opacity-40 transition-opacity duration-300 blur-2xl rounded-3xl -z-10`} />
 
       {/* Card */}
-      <div className={`relative bg-[#0a0a0a]/60 backdrop-blur-sm p-8 rounded-3xl border ${solution.borderColor} transition-all duration-300 h-full flex flex-col`}>
+      <div className={`relative bg-[#0a0a0a]/60 backdrop-blur-sm p-6 rounded-3xl border ${solution.borderColor} transition-all duration-300 h-full flex flex-col`}>
         {/* Animation Container */}
         <div className="relative mb-6 h-64 flex items-center justify-center">
           <div className={`${solution.iconBg} p-3 rounded-2xl border ${solution.borderColor} w-full h-full flex items-center justify-center`}>
@@ -70,20 +67,6 @@ function SolutionCard({ solution, index }: { solution: typeof solutions[0]; inde
               className={`w-full h-full ` + (solution.scale ? `scale-125` : '')}
             /> 
           </div>
-
-          {/* Cross Sign Overlay */}
-          {solution.hasCross && (
-            <motion.div
-              initial={{ scale: 0, rotate: -180 }}
-              animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
-              transition={{ duration: 0.5, delay: index * 0.2 + 0.3 }}
-              className="absolute top-2 right-2"
-            >
-              <div className="bg-red-500/95 backdrop-blur-sm rounded-full p-2 border-3 border-red-400 shadow-lg shadow-red-500/50">
-                <IoMdClose className="text-4xl text-white" />
-              </div>
-            </motion.div>
-          )}
         </div>
 
         {/* Title */}
@@ -98,7 +81,7 @@ function SolutionCard({ solution, index }: { solution: typeof solutions[0]; inde
 
         {/* Animated bottom accent */}
         <motion.div
-          className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-1 bg-gradient-to-r ${solution.gradient} rounded-full`}
+          className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-1 bg-linear-to-r ${solution.gradient} rounded-full`}
           initial={{ width: 0 }}
           animate={isInView ? { width: '60%' } : { width: 0 }}
           transition={{ duration: 0.8, delay: index * 0.2 + 0.4 }}

@@ -102,9 +102,9 @@ export default function OurExpertise() {
                   {/* Glow effect */}
                   <div className={`absolute inset-0 bg-linear-to-r ${item.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl rounded-2xl`} />
 
-                  <div className={`relative bg-[#0a0a0a]/40 backdrop-blur-sm p-5 rounded-2xl border ${item.borderColor} hover:border-opacity-60 transition-all duration-300 flex items-start gap-4`}>
+                  <div className={`relative bg-[#0a0a0a]/40 backdrop-blur-sm p-3 rounded-2xl border ${item.borderColor} hover:border-opacity-60 transition-all duration-300 flex items-start gap-4`}>
                     {/* Icon */}
-                    <div className={`${item.iconBg} p-4 rounded-xl border ${item.borderColor} flex-shrink-0`}>
+                    <div className={`${item.iconBg} p-4 rounded-xl border ${item.borderColor} shrink-0`}>
                       <item.icon className={`text-3xl ${item.textColor}`} />
                     </div>
 
@@ -119,13 +119,13 @@ export default function OurExpertise() {
                     </div>
 
                     {/* Arrow indicator */}
-                    <motion.div
+                    {/* <motion.div
                       className={`text-2xl ${item.textColor} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
                       initial={{ x: -10 }}
                       whileHover={{ x: 0 }}
                     >
                       →
-                    </motion.div>
+                    </motion.div> */}
                   </div>
                 </motion.div>
               ))}

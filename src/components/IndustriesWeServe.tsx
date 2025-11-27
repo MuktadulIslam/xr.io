@@ -91,7 +91,7 @@ function IndustryCard({ industry, index }: { industry: typeof industries[0]; ind
           </p>
 
           {/* Read More Button */}
-          <div className="mt-4 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+          {/* <div className="mt-4 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
             <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-linear-to-r ${industry.gradient} text-white text-sm font-semibold shadow-lg`}>
               <span>Read More</span>
               <svg 
@@ -104,7 +104,7 @@ function IndustryCard({ industry, index }: { industry: typeof industries[0]; ind
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Animated bottom accent */}

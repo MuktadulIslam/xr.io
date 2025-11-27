@@ -43,12 +43,26 @@ function FeatureCard({ feature, index }: { feature: typeof evaluationFeatures[0]
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
-      className="relative group"
+      className="relative group w-full"
     >
       {/* Glow effect on hover */}
       <div className={`absolute inset-0 bg-linear-to-r ${feature.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-2xl blur-xl -z-10`} />
       
-      <div className={`relative bg-linear-to-br from-[#073030]/80 to-[#0a4444]/80 backdrop-blur-sm rounded-2xl border ${feature.borderColor} hover:border-opacity-60 transition-all duration-300 overflow-hidden h-full`}>
+      <div className={`relative bg-linear-to-br from-[#073030]/80 to-[#0a4444]/80 backdrop-blur-sm rounded-2xl border ${feature.borderColor} hover:border-opacity-60 transition-all duration-300 overflow-hidden h-full flex flex-col`}>
+        {/* Step Number Badge */}
+        <motion.div
+          initial={{ scale: 0, rotate: -180 }}
+          animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
+          transition={{ duration: 0.5, delay: index * 0.2 + 0.2 }}
+          className="absolute top-4 left-4 z-10"
+        >
+          <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-linear-to-br ${feature.gradient} flex items-center justify-center shadow-lg border-2 border-white/20`}>
+            <span className="text-white font-bold text-xl sm:text-2xl">
+              {index + 1}
+            </span>
+          </div>
+        </motion.div>
+
         {/* Image Section */}
         <div className="relative w-full aspect-video overflow-hidden">
           <Image
@@ -62,12 +76,17 @@ function FeatureCard({ feature, index }: { feature: typeof evaluationFeatures[0]
         </div>
 
         {/* Content Section */}
-        <div className="p-2 sm:p-4">
+        <div className="p-2 sm:p-4 flex-1 flex flex-col">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-gray-400 font-semibold text-sm sm:text-base">STEP {index + 1}</span>
+            <div className={`flex-1 h-px bg-linear-to-r ${feature.gradient} opacity-50`} />
+          </div>
+          
           <h3 className={`text-2xl sm:text-3xl font-bold mb-2 bg-linear-to-r ${feature.gradient} bg-clip-text text-transparent`}>
             {feature.title}
           </h3>
 
-          <p className="text-gray-200 leading-relaxed text-base sm:text-lg">
+          <p className="text-gray-200 leading-relaxed text-base sm:text-lg flex-1">
             {feature.description}
           </p>
         </div>
@@ -113,10 +132,89 @@ export default function NTSEvaluation() {
           </p>
         </motion.div>
 
-        {/* Features Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
+        {/* Features Grid with Step Connectors */}
+        <div className="grid md:grid-cols-3 gap-12 md:gap-8 lg:gap-12 mb-8 relative">
           {evaluationFeatures.map((feature, index) => (
-            <FeatureCard key={index} feature={feature} index={index} />
+            <div key={index} className="relative flex">
+              <FeatureCard feature={feature} index={index} />
+              
+              {/* Desktop: Horizontal Arrow Connector */}
+              {index < evaluationFeatures.length - 1 && (
+                <>
+                  {/* Desktop Arrow */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: index * 0.2 + 0.5 }}
+                    className="hidden md:block absolute top-1/2 -right-2 lg:-right-5.5 translate-x-1/2 -translate-y-1/2 z-20"
+                  >
+                    <div className="relative">
+                      <motion.svg
+                        width="40"
+                        height="40"
+                        viewBox="0 0 40 40"
+                        fill="none"
+                        className="drop-shadow-[0_0_8px_rgba(16,185,129,0.5)]"
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                      >
+                        <defs>
+                          <linearGradient id={`arrow-gradient-${index}`} x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stopColor="#10b981" />
+                            <stop offset="50%" stopColor="#14b8a6" />
+                            <stop offset="100%" stopColor="#06b6d4" />
+                          </linearGradient>
+                        </defs>
+                        <circle cx="20" cy="20" r="18" fill="rgba(7, 48, 48, 0.8)" stroke={`url(#arrow-gradient-${index})`} strokeWidth="2" />
+                        <path
+                          d="M14 20H26M26 20L22 16M26 20L22 24"
+                          stroke={`url(#arrow-gradient-${index})`}
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </motion.svg>
+                    </div>
+                  </motion.div>
+
+                  {/* Mobile: Vertical Arrow Connector */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: index * 0.2 + 0.5 }}
+                    className="md:hidden absolute -bottom-6 left-1/2 -translate-x-1/2 translate-y-1/2 z-20"
+                  >
+                    <div className="relative">
+                      <motion.svg
+                        width="40"
+                        height="40"
+                        viewBox="0 0 40 40"
+                        fill="none"
+                        className="drop-shadow-[0_0_8px_rgba(16,185,129,0.5)]"
+                        animate={{ y: [0, 5, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                      >
+                        <defs>
+                          <linearGradient id={`arrow-gradient-mobile-${index}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stopColor="#10b981" />
+                            <stop offset="50%" stopColor="#14b8a6" />
+                            <stop offset="100%" stopColor="#06b6d4" />
+                          </linearGradient>
+                        </defs>
+                        <circle cx="20" cy="20" r="18" fill="rgba(7, 48, 48, 0.8)" stroke={`url(#arrow-gradient-mobile-${index})`} strokeWidth="2" />
+                        <path
+                          d="M20 14V26M20 26L16 22M20 26L24 22"
+                          stroke={`url(#arrow-gradient-mobile-${index})`}
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </motion.svg>
+                    </div>
+                  </motion.div>
+                </>
+              )}
+            </div>
           ))}
         </div>
 
