@@ -4,6 +4,7 @@ import Hero from '@/components/Hero';
 import OurStory from '@/components/OurStory';
 import OurExpertise from '@/components/OurExpertise';
 import OurSolutions from '@/components/OurSolutions';
+import OurAdditionalServices from '@/components/OurAdditionalServices';
 import NTSEvaluation from '@/components/NTSEvaluation';
 import IndustriesWeServe from '@/components/IndustriesWeServe';
 import Features from '@/components/Features';
@@ -23,6 +24,7 @@ export default function Home() {
       <OurSolutions />
       <NTSEvaluation />
       <IndustriesWeServe />
+      <OurAdditionalServices />
       {/* <Features />
       <About /> */}
       {/* <CTA /> */}

@@ -64,7 +64,7 @@ function SolutionCard({ solution, index }: { solution: typeof solutions[0]; inde
             <Lottie
               animationData={solution.animation}
               loop={true}
-              className={`w-full h-full ` + (solution.scale ? `scale-125` : '')}
+              className={`w-full h-full ` + (solution.scale ? solution.scale : '')}
             /> 
           </div>
         </div>
