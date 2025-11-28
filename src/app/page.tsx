@@ -5,6 +5,7 @@ import OurStory from '@/components/OurStory';
 import OurExpertise from '@/components/OurExpertise';
 import OurSolutions from '@/components/OurSolutions';
 import OurAdditionalServices from '@/components/OurAdditionalServices';
+import Testimonials from '@/components/Testimonials';
 import NTSEvaluation from '@/components/NTSEvaluation';
 import IndustriesWeServe from '@/components/IndustriesWeServe';
 import Features from '@/components/Features';
@@ -15,7 +16,7 @@ import StickyTalkingModel from '@/components/StickyTalkingModel';
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-[#0a0a0a]">
+    <main className="relative min-h-screen bg-[#0a0a0a] overflow-x-hidden">
       <ParticlesBackground />
       <Navbar />
       <Hero />
@@ -25,6 +26,7 @@ export default function Home() {
       <NTSEvaluation />
       <IndustriesWeServe />
       <OurAdditionalServices />
+      <Testimonials />
       {/* <Features />
       <About /> */}
       {/* <CTA /> */}
