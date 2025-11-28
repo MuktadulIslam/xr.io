@@ -163,7 +163,7 @@ export default function Navbar() {
 										animate={{ opacity: 1, y: 0, scale: 1 }}
 										exit={{ opacity: 0, y: 10, scale: 0.95 }}
 										transition={{ duration: 0.3, ease: "easeOut" }}
-										className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-96 bg-[#073030]/30 backdrop-blur-2xl border border-emerald-500/30 rounded-3xl shadow-2xl shadow-emerald-500/20 overflow-hidden"
+										className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-96 bg-[#073030]/95 backdrop-blur-3xl border border-emerald-500/30 rounded-3xl shadow-2xl shadow-emerald-500/20 overflow-hidden"
 										style={{
 											boxShadow: '0 25px 50px -12px rgba(16, 185, 129, 0.25), 0 0 0 1px rgba(16, 185, 129, 0.1)',
 										}}
@@ -232,7 +232,7 @@ export default function Navbar() {
 										animate={{ opacity: 1, y: 0, scale: 1 }}
 										exit={{ opacity: 0, y: 10, scale: 0.95 }}
 										transition={{ duration: 0.3, ease: "easeOut" }}
-										className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[500px] bg-[#073030]/30 backdrop-blur-2xl border border-emerald-500/30 rounded-3xl shadow-2xl shadow-emerald-500/20 overflow-hidden"
+										className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[500px] bg-[#073030]/95 backdrop-blur-3xl border border-emerald-500/30 rounded-3xl shadow-2xl shadow-emerald-500/20 overflow-hidden"
 										style={{
 											boxShadow: '0 25px 50px -12px rgba(16, 185, 129, 0.25), 0 0 0 1px rgba(16, 185, 129, 0.1)',
 										}}
