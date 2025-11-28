@@ -69,7 +69,7 @@ const testimonials = [
     quote:
       'We can now rehearse rare, high‑risk events in a safe environment. The platform has become a core part of our readiness strategy.',
     image: '/images/profiles/profile4.png',
-  },
+  }
 ];
 
 function TestimonialCard({
@@ -170,7 +170,7 @@ export default function Testimonials() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {testimonials.map((testimonial, index) => (
             <TestimonialCard
-              key={testimonial.name}
+              key={index}
               testimonial={testimonial}
               index={index}
             />

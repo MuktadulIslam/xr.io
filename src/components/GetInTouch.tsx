@@ -99,7 +99,7 @@ export default function GetInTouch() {
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8 w-full lg:w-2/5 shrink-0"
+            className="space-y-8 w-full lg:w-[50%] lg:max-w-[500px] xl:max-w-[580px] shrink-0"
           >
             {/* Image Container - No Hover Effects */}
             <div className="relative">
@@ -140,9 +140,9 @@ export default function GetInTouch() {
                 <div className="shrink-0 w-12 h-12 rounded-lg bg-linear-to-br from-cyan-500/20 to-cyan-500/5 flex items-center justify-center border border-cyan-500/20 group-hover/card:border-cyan-400/40 transition-colors">
                   <HiMail className="w-6 h-6 text-cyan-400" />
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <p className="text-xs text-gray-400 uppercase tracking-wider mb-0.5">Email</p>
-                  <p className="text-white font-medium group-hover/card:text-cyan-400 transition-colors">contact@craftxr.io</p>
+                  <p className="text-white font-medium group-hover/card:text-cyan-400 transition-colors truncate">contact@craftxr.io</p>
                 </div>
               </motion.a>
 
@@ -156,7 +156,7 @@ export default function GetInTouch() {
                 <div className="shrink-0 w-12 h-12 rounded-lg bg-linear-to-br from-emerald-500/20 to-emerald-500/5 flex items-center justify-center border border-emerald-500/20">
                   <HiLocationMarker className="w-6 h-6 text-emerald-400" />
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <p className="text-xs text-gray-400 uppercase tracking-wider mb-0.5">Location</p>
                   <p className="text-white font-medium">Calgary, Alberta, Canada</p>
                 </div>
@@ -206,7 +206,7 @@ export default function GetInTouch() {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="w-full lg:w-3/5 shrink-0"
+            className="w-full lg:flex-1 lg:min-w-0"
           >
             {/* Form Container */}
             <div className="relative group/form">
@@ -223,7 +223,7 @@ export default function GetInTouch() {
                 }}
               />
               
-              <div className="relative rounded-3xl overflow-hidden border-2 border-cyan-500/20 bg-[#05090b]/90 backdrop-blur-xl p-5 md:p-10 shadow-2xl">
+              <div className="relative rounded-3xl overflow-hidden border-2 border-cyan-500/20 bg-[#05090b]/90 backdrop-blur-xl p-5 xl:p-10 shadow-2xl">
                 {/* Decorative corner accents */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-bl from-cyan-500/10 to-transparent rounded-bl-[100px] pointer-events-none" />
                 <div className="absolute bottom-0 left-0 w-32 h-32 bg-linear-to-tr from-emerald-500/10 to-transparent rounded-tr-[100px] pointer-events-none" />
@@ -263,7 +263,7 @@ export default function GetInTouch() {
                         onBlur={() => setFocusedField(null)}
                         required
                         className="w-full pl-14 pr-4 py-3.5 bg-[#0a0a0a]/60 backdrop-blur-sm border-2 border-cyan-500/20 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300 text-sm font-medium"
-                        placeholder="John"
+                        placeholder="Hamza"
                       />
                       
                       {/* Animated bottom line */}
@@ -311,7 +311,7 @@ export default function GetInTouch() {
                         onBlur={() => setFocusedField(null)}
                         required
                         className="w-full pl-14 pr-4 py-3.5 bg-[#0a0a0a]/60 backdrop-blur-sm border-2 border-cyan-500/20 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300 text-sm font-medium"
-                        placeholder="Doe"
+                        placeholder="Afzaal"
                       />
                       
                       <motion.div
@@ -378,8 +378,8 @@ export default function GetInTouch() {
                     transition={{ delay: 0.8, duration: 0.5 }}
                     className="relative"
                   >
-                    <label htmlFor="email" className="block text-xs font-bold text-cyan-300 uppercase tracking-wider mb-2.5 flex items-center gap-2">
-                      <span className="w-1 h-4 bg-gradient-to-b from-cyan-400 to-cyan-600 rounded-full" />
+                    <label htmlFor="email" className="text-xs font-bold text-cyan-300 uppercase tracking-wider mb-2.5 flex items-center gap-2">
+                      <span className="w-1 h-4 bg-linear-to-b from-cyan-400 to-cyan-600 rounded-full" />
                       Email
                     </label>
                     <div className="relative group/input">
@@ -403,17 +403,17 @@ export default function GetInTouch() {
                         onBlur={() => setFocusedField(null)}
                         required
                         className="w-full pl-14 pr-4 py-3.5 bg-[#0a0a0a]/60 backdrop-blur-sm border-2 border-cyan-500/20 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300 text-sm font-medium"
-                        placeholder="john.doe@example.com"
+                        placeholder="hamza.afzaal@example.com"
                       />
                       
                       <motion.div
-                        className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-cyan-400 via-emerald-400 to-blue-400 rounded-full"
+                        className="absolute bottom-0 left-0 h-0.5 bg-linear-to-r from-cyan-400 via-emerald-400 to-blue-400 rounded-full"
                         initial={{ width: 0, opacity: 0 }}
                         animate={focusedField === 'email' ? { width: '100%', opacity: 1 } : { width: 0, opacity: 0 }}
                         transition={{ duration: 0.3 }}
                       />
                       
-                      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/5 to-cyan-500/0 rounded-xl opacity-0 group-hover/input:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                      <div className="absolute inset-0 bg-linear-to-r from-cyan-500/0 via-cyan-500/5 to-cyan-500/0 rounded-xl opacity-0 group-hover/input:opacity-100 transition-opacity duration-300 pointer-events-none" />
                     </div>
                   </motion.div>
 
@@ -457,7 +457,7 @@ export default function GetInTouch() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     transition={{ delay: 1.0, duration: 0.5 }}
-                    className="pt-4"
+                    className=""
                   >
                     <motion.button
                       type="submit"
