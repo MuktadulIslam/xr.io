@@ -38,6 +38,38 @@ const testimonials = [
       'We can now rehearse rare, high‑risk events in a safe environment. The platform has become a core part of our readiness strategy.',
     image: '/images/profiles/profile4.png',
   },
+  {
+    name: 'Dr. Ananya Rao',
+    role: 'Chief Medical Officer',
+    company: 'NovaCare Health Network',
+    quote:
+      'CraftXR transformed how we train our clinicians. Their IoT-enabled VR simulations helped us reduce critical incident response times by over 30%.',
+    image: '/images/profiles/profile1.png',
+  },
+  {
+    name: 'Michael Tan',
+    role: 'VP, Talent Development',
+    company: 'NextEdge Technologies',
+    quote:
+      'The level of behavioral insight we get from their non-technical skills evaluation is unmatched. It has completely changed our leadership development programs.',
+    image: '/images/profiles/profile2.png',
+  },
+  {
+    name: 'Sara Ahmed',
+    role: 'Head of Learning & Development',
+    company: 'BrightPath Education Group',
+    quote:
+      'Our learners love the realism of the scenarios. The combination of IoT data and immersive VR gives us a 360° view of performance.',
+    image: '/images/profiles/profile3.png',
+  },
+  {
+    name: 'James O’Connor',
+    role: 'Operations Director',
+    company: 'UrbanSafe Public Services',
+    quote:
+      'We can now rehearse rare, high‑risk events in a safe environment. The platform has become a core part of our readiness strategy.',
+    image: '/images/profiles/profile4.png',
+  },
 ];
 
 function TestimonialCard({

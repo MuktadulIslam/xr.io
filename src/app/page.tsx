@@ -13,6 +13,7 @@ import About from '@/components/About';
 import CTA from '@/components/CTA';
 import Footer from '@/components/Footer';
 import StickyTalkingModel from '@/components/StickyTalkingModel';
+import GetInTouch from '@/components/GetInTouch';
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
       <IndustriesWeServe />
       <OurAdditionalServices />
       <Testimonials />
+      <GetInTouch />
       {/* <Features />
       <About /> */}
       {/* <CTA /> */}
