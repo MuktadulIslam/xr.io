@@ -61,7 +61,8 @@ function TalkingModel() {
         <primitive
             object={scene}
             scale={2}
-            position={[0, -1.8, 0]}
+            position={[0, -1.85, 0]}
+            rotation={[0, -0.2, 0]}
         />
     );
 }
