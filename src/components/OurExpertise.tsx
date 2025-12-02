@@ -126,7 +126,7 @@ export default function OurExpertise() {
 					</div>
 
 					{/* Right side - Image */}
-					<div className="relative w-full h-auto">
+					<div className="z-10 relative w-full h-auto">
 						<div className="relative rounded-3xl overflow-hidden border border-cyan-500/20 shadow-2xl shadow-cyan-500/10">
 							<Image
 								src="/our_expertise.png"

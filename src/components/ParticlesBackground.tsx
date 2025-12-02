@@ -27,11 +27,11 @@ export default function ParticlesBackground() {
                 value: 'transparent',
               },
             },
-            fpsLimit: 30,
+            fpsLimit: 25,
             interactivity: {
               events: {
                 onClick: {
-                  enable: true,
+                  enable: false,
                   mode: 'push',
                 },
                 onHover: {
@@ -74,7 +74,7 @@ export default function ParticlesBackground() {
                 density: {
                   enable: true,
                 },
-                value: 100,
+                value: 120,
               },
               opacity: {
                 value: 0.3,

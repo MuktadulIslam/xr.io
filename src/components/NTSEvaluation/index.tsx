@@ -94,7 +94,7 @@ export default function NTSEvaluation() {
                 {/* Features Grid with Step Connectors */}
                 <div className="grid md:grid-cols-3 gap-12 md:gap-8 lg:gap-12 mb-4 lg:mb-8 relative">
                     {evaluationFeatures.map((feature, index) => (
-                        <div key={index} className="relative flex">
+                        <div key={index} className="z-10 relative flex">
                             <FeatureCard feature={feature} index={index} />
 
                             {/* Desktop: Horizontal Arrow Connector */}

@@ -36,7 +36,7 @@ const solutions = [
 function SolutionCard({ solution, index }: { solution: typeof solutions[0]; index: number }) {
 
     return (
-        <div className="relative group hover:scale-105 transition-all duration-300">
+        <div className="z-10 relative group hover:scale-105 transition-all duration-300">
             {/* Outer glow effect on hover */}
             <div className={`absolute inset-0 bg-linear-to-br ${solution.gradient} opacity-0 group-hover:opacity-40 transition-opacity duration-300 blur-2xl rounded-3xl -z-10`} />
 

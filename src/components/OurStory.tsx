@@ -19,7 +19,7 @@ export default function OurStory() {
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.5 }}
-            className="w-full h-auto"
+            className="z-10 w-full h-auto"
           >
             <Image
               src="/out_story2.png"
