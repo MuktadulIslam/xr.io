@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, easeIn } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { IoMdClose } from "react-icons/io";
 import Image from 'next/image';
@@ -146,7 +146,7 @@ export default function Navbar() {
 		<motion.nav
 			initial={{ y: -100 }}
 			animate={{ y: 0 }}
-			transition={{ duration: 0.5 }}
+			transition={{ duration: 0.5, ease:'easeIn'}}
 			className={`relative lg:fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
 				? 'bg-[#073030]/40 backdrop-blur-xl shadow-2xl shadow-emerald-500/10'
 				: 'bg-transparent'

@@ -6,10 +6,10 @@ export default function Hero() {
   return (
     <section className="relative w-full h-svh max-h-[800px] flex items-center justify-center overflow-hidden">
       <div className="max-container px-6 text-center relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          <motion.div
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.4, ease: 'easeIn' }}
         >
           <h1 className="text-5xl md:text-7xl xl:text-8xl font-bold mb-6 bg-linear-to-r from-white via-emerald-200 to-teal-300 bg-clip-text text-transparent leading-tight">
             We Craft Your Imaginations
