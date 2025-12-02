@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function Hero() {
   return (
-    <section className="relative flex items-center justify-center overflow-hidden pt-32 2xl:pt-52 pb-20">
+    <section className="relative w-full h-svh max-h-[800px] flex items-center justify-center overflow-hidden">
       <div className="max-container px-6 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -12,7 +12,7 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
         >
           <motion.h1
-            className="text-5xl md:text-7xl 2xl:text-8xl font-bold mb-6 bg-linear-to-r from-white via-emerald-200 to-teal-300 bg-clip-text text-transparent leading-tight"
+            className="text-5xl md:text-7xl xl:text-8xl font-bold mb-6 bg-linear-to-r from-white via-emerald-200 to-teal-300 bg-clip-text text-transparent leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
@@ -21,7 +21,7 @@ export default function Hero() {
           </motion.h1>
 
           <motion.p
-            className="text-xl md:text-3xl  text-gray-300 mb-8 max-w-3xl mx-auto"
+            className="text-lg md:text-2xl lg:text-3xl  text-gray-300 mb-8 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
@@ -30,7 +30,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.p
-            className="text-lg md:text-xl text-gray-400 mb-12 max-w-3xl mx-auto"
+            className="text-base md:text-lg lg:text-xl text-gray-400 mb-12 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
@@ -48,12 +48,12 @@ export default function Hero() {
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="px-20 py-1 bg-transparent border-2 border-emerald-500/50 hover:border-emerald-400 rounded-full text-emerald-300 hover:text-emerald-200 text-lg font-semibold hover:bg-emerald-500/10 backdrop-blur-sm transition-all duration-300 flex items-center gap-2 relative group overflow-hidden"
+              className="px-10 md:px-12 lg:px-16 xl:px-20 py-0.5 lg:py-1 bg-transparent border-2 border-emerald-500/50 hover:border-emerald-400 rounded-full text-emerald-300 hover:text-emerald-200 text-sm lg:text-base xl:text-lg font-semibold hover:bg-emerald-500/10 backdrop-blur-sm transition-all duration-300 flex items-center gap-2 relative group overflow-hidden"
             >
-              <span className="relative z-10 flex items-center gap-2">
+              <span className="relative z-10 flex items-center gap-1 lg:gap-2">
                 Explore More
                 <motion.span
-                  className="text-3xl"
+                  className="text-xl lg:text-2xl xl:text-3xl"
                   animate={{ x: [0, 5, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
                 >

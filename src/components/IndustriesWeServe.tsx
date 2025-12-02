@@ -1,8 +1,3 @@
-'use client';
-
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
 import Image from 'next/image';
 
 const industries = [
@@ -51,17 +46,9 @@ const industries = [
 ];
 
 function IndustryCard({ industry, index }: { industry: typeof industries[0]; index: number }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="relative group cursor-pointer"
-    >
+    <div className="relative group cursor-pointer">
       {/* Outer glow effect on hover */}
       <div className={`absolute inset-0 bg-linear-to-br ${industry.gradient} opacity-0 group-hover:opacity-40 transition-opacity duration-300 blur-2xl rounded-2xl -z-10`} />
 
@@ -76,7 +63,7 @@ function IndustryCard({ industry, index }: { industry: typeof industries[0]; ind
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
-          
+
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-linear-to-t from-[#0a0a0a] via-[#0a0a0a]/30 to-transparent" />
         </div>
@@ -90,7 +77,6 @@ function IndustryCard({ industry, index }: { industry: typeof industries[0]; ind
             {industry.description}
           </p>
 
-          {/* Read More Button */}
           {/* <div className="mt-4 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
             <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-linear-to-r ${industry.gradient} text-white text-sm font-semibold shadow-lg`}>
               <span>Read More</span>
@@ -108,39 +94,26 @@ function IndustryCard({ industry, index }: { industry: typeof industries[0]; ind
         </div>
 
         {/* Animated bottom accent */}
-        <motion.div
-          className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-1 bg-linear-to-r ${industry.gradient} rounded-full`}
-          initial={{ width: 0 }}
-          animate={isInView ? { width: '80%' } : { width: 0 }}
-          transition={{ duration: 0.8, delay: index * 0.1 + 0.3 }}
-        />
+        <div className={`absolute w-[80%] bottom-0 left-1/2 -translate-x-1/2 h-1 bg-linear-to-r ${industry.gradient} rounded-full`} />
       </div>
-    </motion.div>
+    </div>
   );
 }
 
 export default function IndustriesWeServe() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="industries" className="relative py-20 px-6 overflow-hidden">
+    <section id="industries" className="relative py-5 px-3 lg:px-6 overflow-hidden mb-12 lg:mb-20">
       <div className="max-container">
         {/* Header */}
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-5xl md:text-6xl font-bold mb-4 bg-linear-to-r from-white via-emerald-300 to-teal-400 bg-clip-text text-transparent">
+        <div className="text-center mb-6 md:mb-10 lg:mb-16">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-linear-to-r from-white via-emerald-300 to-teal-400 bg-clip-text text-transparent">
             Industries We Serve
           </h2>
-        </motion.div>
+        </div>
 
         {/* Industries Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6  gap-5 xl:gap-8">
           {industries.map((industry, index) => (
             <IndustryCard key={index} industry={industry} index={index} />
           ))}
@@ -149,4 +122,3 @@ export default function IndustriesWeServe() {
     </section>
   );
 }
-

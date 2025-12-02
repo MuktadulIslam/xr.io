@@ -37,7 +37,7 @@ function ChatBubble({ message }: { message: string }) {
 }
 
 function TalkingModel() {
-    const { scene, animations } = useGLTF('/Talking.glb');
+    const { scene, animations } = useGLTF('/TalkingWithLogo.glb');
     const { actions, mixer } = useAnimations(animations, scene);
 
     useEffect(() => {
@@ -104,7 +104,7 @@ export default function StickyTalkingModel() {
     };
 
     return (
-        <div className="absolute h-full right-0 top-0 pt-[500px]">
+        <div className="absolute h-full right-0 top-0 pt-[500px] z-1000">
             <div className="h-screen sticky top-0">
                 <div className="absolute bottom-0 -translate-x-full pointer-events-none h-[187px] sm:h-[225px] lg:h-[255px] xl:h-[300px] w-[94px] sm:w-[113px] lg:w-[127px] xl:w-[150px] overflow-visible">
                     <AnimatePresence mode="wait">
@@ -216,4 +216,4 @@ export default function StickyTalkingModel() {
 }
 
 // Preload the model
-useGLTF.preload('/Talking.glb');
+useGLTF.preload('/TalkingWithLogo.glb');
