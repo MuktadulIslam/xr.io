@@ -326,7 +326,7 @@ export default function Navbar() {
 
 						{/* Regular Links */}
 						<a
-							href="#about"
+							href="/about-us"
 							className="hover:bg-white/10 rounded-lg text-gray-200 hover:text-white transition-all duration-300 px-4 py-2 relative group overflow-hidden font-medium"
 						>
 							<span className="relative z-10">About Us</span>
@@ -545,7 +545,7 @@ export default function Navbar() {
 									{/* Regular Links */}
 									<div className="space-y-2">
 										<a
-											href="#about"
+											href="/about-us"
 											className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-emerald-500/20 hover:border-emerald-500/40 text-white font-medium"
 											onClick={() => setMobileMenuOpen(false)}
 										>

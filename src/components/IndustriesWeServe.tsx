@@ -103,7 +103,7 @@ function IndustryCard({ industry, index }: { industry: typeof industries[0]; ind
 export default function IndustriesWeServe() {
 
   return (
-    <section id="industries" className="relative py-5 px-3 lg:px-6 overflow-hidden mb-12 lg:mb-20">
+    <section id="industries" className="z-10 relative py-5 px-3 lg:px-6 overflow-hidden mb-12 lg:mb-20">
       <div className="max-container">
         {/* Header */}
         <div className="text-center mb-6 md:mb-10 lg:mb-16">
