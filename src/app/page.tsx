@@ -14,7 +14,7 @@ import GetInTouch from '@/components/GetInTouch';
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-[#0a0a0a] overflow-x-hidden">
+    <main className="relative min-h-screen bg-[#0a0a0a]">
       <ParticlesBackground />
       <Navbar />
       <Hero />
@@ -27,7 +27,7 @@ export default function Home() {
       <Testimonials />
       <GetInTouch />
       <Footer />
-      {/* <StickyTalkingModel /> */}
+      <StickyTalkingModel />
     </main>
   );
 }

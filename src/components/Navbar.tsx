@@ -109,7 +109,7 @@ export default function Navbar() {
 				</>
 			)}
 
-			<div className="max-container px-6 py-4 relative z-10">
+			<div className="max-container px-6 py-2 relative z-10">
 				<div className="flex items-center justify-between">
 					{/* Logo */}
 					<motion.a
@@ -121,10 +121,10 @@ export default function Navbar() {
 					>
 						<div className="absolute -inset-3 bg-linear-to-r from-emerald-500/20 to-teal-500/20 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500" />
 						<Image
-							src="/craftxr.png"
+							src="/images/logo/craftxr-ryan-white.png"
 							alt="CraftXR Logo"
 							width={140}
-							height={45}
+							height={50}
 							className="h-10 lg:h-12 w-auto relative z-10 drop-shadow-2xl"
 						/>
 					</motion.a>
