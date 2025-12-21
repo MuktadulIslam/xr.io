@@ -72,8 +72,8 @@ export default function OurSolutions() {
         <section id="solutions" className="relative py-5 px-3 lg:px-6 overflow-hidden mb-12 lg:mb-20">
             <div className="max-container">
                 {/* Header */}
-                <div className="text-center mb-6 md:mb-10 lg:mb-16">
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-linear-to-r from-white via-teal-300 to-cyan-400 bg-clip-text text-transparent">
+                <div className="text-center mb-6 md:mb-10 lg:mb-12">
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold h-12 md:h-14 lg:h-18 bg-linear-to-r from-white via-teal-300 to-cyan-400 bg-clip-text text-transparent">
                         Our Solutions
                     </h2>
                     <p className="text-sm md:text-base lg:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">

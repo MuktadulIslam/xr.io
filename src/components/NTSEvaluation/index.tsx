@@ -76,9 +76,9 @@ export default function NTSEvaluation() {
         <section id="nts-evaluation" className="relative py-5 px-6 overflow-hidden mb-12 lg:mb-20">
             <div className="max-container">
                 {/* Header Section */}
-                <div className="text-center mb-6 md:mb-10 lg:mb-16">
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-linear-to-r from-emerald-300 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
-                        Flagship Product: NTS Evaluation
+                <div className="text-center mb-6 md:mb-10 lg:mb-12">
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold h-12 md:h-14 lg:h-18 bg-linear-to-r from-emerald-300 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
+                        Flagship Product: EvalNTS
                     </h2>
                     <p className="text-sm md:text-base lg:text-lg text-gray-300 max-w-3xl mx-auto">
                         An AI-evaluator for your non-technical skills.{' '}

@@ -127,8 +127,8 @@ export default function OurAdditionalServices() {
     <section id="additional-services" className="relative py-5 px-3 lg:px-6 overflow-hidden mb-12 lg:mb-20">
       <div className="max-container relative z-10">
         {/* Header */}
-        <div className="text-center mb-6 md:mb-10 lg:mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-3 bg-linear-to-r from-white via-amber-100 to-cyan-500 bg-clip-text text-transparent leading-tight">
+        <div className="text-center mb-6 md:mb-10 lg:mb-12">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold h-12 md:h-14 lg:h-18 bg-linear-to-r from-white via-amber-100 to-cyan-500 bg-clip-text text-transparent leading-tight">
             Our Additional Services
           </h2>
           <p className="text-sm md:text-base lg:text-lg text-gray-300 max-w-5xl mx-auto leading-relaxed">

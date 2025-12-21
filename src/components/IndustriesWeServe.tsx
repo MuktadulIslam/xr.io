@@ -106,8 +106,8 @@ export default function IndustriesWeServe() {
     <section id="industries" className="z-10 relative py-5 px-3 lg:px-6 overflow-hidden mb-12 lg:mb-20">
       <div className="max-container">
         {/* Header */}
-        <div className="text-center mb-6 md:mb-10 lg:mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-linear-to-r from-white via-emerald-300 to-teal-400 bg-clip-text text-transparent">
+        <div className="text-center mb-6 md:mb-10 lg:mb-12">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold h-12 md:h-14 lg:h-18 bg-linear-to-r from-white via-emerald-300 to-teal-400 bg-clip-text text-transparent">
             Industries We Serve
           </h2>
         </div>
