@@ -7,6 +7,7 @@ import Image from 'next/image';
 import {
 	HiSparkles,
 	HiCube,
+	HiDevicePhoneMobile,
 	HiAcademicCap,
 	HiBriefcase,
 	HiShieldCheck,
@@ -22,6 +23,9 @@ import {
 } from 'react-icons/fa';
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import { PiVirtualRealityFill } from 'react-icons/pi';
+import { getReadEventIds } from '@/utils/eventStorage';
+import { getUnreadEventCount } from '@/config/events';
+import Link from 'next/link';
 
 const solutionsItems = [
 	{
@@ -109,6 +113,7 @@ export default function Navbar() {
 	const [solutionsOpen, setSolutionsOpen] = useState(false);
 	const [industriesOpen, setIndustriesOpen] = useState(false);
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+	const [unreadEventsCount, setUnreadEventsCount] = useState(0);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -116,6 +121,37 @@ export default function Navbar() {
 		};
 		window.addEventListener('scroll', handleScroll);
 		return () => window.removeEventListener('scroll', handleScroll);
+	}, []);
+
+	// Update unread events count
+	useEffect(() => {
+		const updateUnreadCount = () => {
+			const readEvents = getReadEventIds();
+			const count = getUnreadEventCount(readEvents);
+			setUnreadEventsCount(count);
+		};
+
+		updateUnreadCount();
+
+		// Update count when returning to the page
+		const handleVisibilityChange = () => {
+			if (!document.hidden) {
+				updateUnreadCount();
+			}
+		};
+
+		document.addEventListener('visibilitychange', handleVisibilityChange);
+
+		// Also update on storage events (when user opens multiple tabs)
+		const handleStorage = () => {
+			updateUnreadCount();
+		};
+		window.addEventListener('storage', handleStorage);
+
+		return () => {
+			document.removeEventListener('visibilitychange', handleVisibilityChange);
+			window.removeEventListener('storage', handleStorage);
+		};
 	}, []);
 
 	// Close dropdowns when clicking outside
@@ -146,7 +182,7 @@ export default function Navbar() {
 		<motion.nav
 			initial={{ y: -100 }}
 			animate={{ y: 0 }}
-			transition={{ duration: 0.5, ease:'easeIn'}}
+			transition={{ duration: 0.5, ease: 'easeIn' }}
 			className={`relative lg:fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
 				? 'bg-[#073030]/40 backdrop-blur-xl shadow-2xl shadow-emerald-500/10'
 				: 'bg-transparent'
@@ -330,6 +366,8 @@ export default function Navbar() {
 							className="hover:bg-white/10 rounded-lg text-gray-200 hover:text-white transition-all duration-300 px-4 py-2 relative group overflow-hidden font-medium"
 						>
 							<span className="relative z-10">About Us</span>
+							<div className="absolute inset-0 bg-white/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+							<div className="absolute inset-0 bg-linear-to-r from-emerald-500/0 via-emerald-500/10 to-teal-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 						</a>
 						<a
 							href="#blog"
@@ -338,13 +376,33 @@ export default function Navbar() {
 							<span className="relative z-10">Blogs</span>
 						</a>
 
+						{/* Events Link with Badge */}
+						<a
+							href="/events"
+							id="navbar-events-button"
+							className="text-gray-200 hover:text-white transition-all duration-300 px-4 py-2 relative group font-medium"
+						>
+							<span className="relative z-10">Events</span>
+							<div className="absolute inset-0 bg-white/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+							<div className="absolute inset-0 bg-linear-to-r from-blue-500/0 via-blue-500/10 to-cyan-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+							{/* Notification badge */}
+							{unreadEventsCount > 0 && (
+								<span
+									className="absolute top-1 right-0 h-4 px-1 rounded-sm flex items-center justify-center text-[9px] font-semibold text-white border border-red-500"
+								>
+									{unreadEventsCount}
+								</span>
+							)}
+						</a>
+
 						{/* CTA Button */}
 						<motion.a
 							href='https://outlook.office.com/book/CraftXRTechStart@uofc.onmicrosoft.com/s/u6pglWHPnEmR-0ulQ2PC-w2?ismsaljsauthenabled'
 							target='_blank'
 							whileHover={{ scale: 1.05, y: -2 }}
 							whileTap={{ scale: 0.95 }}
-							className="ml-10 px-5 py-3 bg-linear-to-r from-emerald-500 to-teal-500 rounded-xl text-white font-semibold transition-all duration-300 relative overflow-hidden group flex items-center gap-1"
+							className="ml-8 px-4 py-2 bg-linear-to-r from-emerald-500 to-teal-500 rounded-xl text-white font-semibold transition-all duration-300 relative overflow-hidden group flex items-center gap-1"
 						>
 							<motion.div
 								animate={{
@@ -563,12 +621,26 @@ export default function Navbar() {
 											<HiChatBubbleLeftRight className="w-5 h-5 text-emerald-400 group-hover:text-emerald-300 transition-colors duration-300" />
 											Blogs
 										</a>
+
+										<Link
+											href="/events"
+											className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-blue-500/20 hover:border-blue-500/40 text-white font-medium transition-all duration-300 group relative"
+											onClick={() => setMobileMenuOpen(false)}
+										>
+											<HiSparkles className="w-5 h-5 text-blue-400 group-hover:text-blue-300 transition-colors duration-300" />
+											Events
+											{unreadEventsCount > 0 && (
+												<span className="ml-auto px-2 py-0.5 rounded-sm text-sm font-semibold text-white border-2 border-red-500">
+													{unreadEventsCount}
+												</span>
+											)}
+										</Link>
 									</div>
 
 									{/* CTA Button */}
 									<a
-									href='https://outlook.office.com/book/CraftXRTechStart@uofc.onmicrosoft.com/s/u6pglWHPnEmR-0ulQ2PC-w2?ismsaljsauthenabled'
-									target='_blank'
+										href='https://outlook.office.com/book/CraftXRTechStart@uofc.onmicrosoft.com/s/u6pglWHPnEmR-0ulQ2PC-w2?ismsaljsauthenabled'
+										target='_blank'
 										className="w-full px-8 py-3 bg-linear-to-r from-emerald-500 to-teal-500 rounded-lg text-white font-semibold transition-all duration-300 relative overflow-hidden group flex items-center justify-center gap-1"
 										onClick={() => setMobileMenuOpen(false)}
 									>

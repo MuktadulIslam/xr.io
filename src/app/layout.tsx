@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GetInTouch from "@/components/GetInTouch";
 import ParticlesBackground from "@/components/ParticlesBackground";
+import EventPopup from "@/components/EventPopup";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +38,7 @@ export default function RootLayout({
           <GetInTouch />
           <Footer />
           <ParticlesBackground />
+          <EventPopup/>
         </main>
       </body>
     </html>
