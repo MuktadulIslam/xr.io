@@ -339,7 +339,9 @@ export default function Navbar() {
 						</a>
 
 						{/* CTA Button */}
-						<motion.button
+						<motion.a
+							href='https://outlook.office.com/book/CraftXRTechStart@uofc.onmicrosoft.com/s/u6pglWHPnEmR-0ulQ2PC-w2?ismsaljsauthenabled'
+							target='_blank'
 							whileHover={{ scale: 1.05, y: -2 }}
 							whileTap={{ scale: 0.95 }}
 							className="ml-10 px-5 py-3 bg-linear-to-r from-emerald-500 to-teal-500 rounded-xl text-white font-semibold transition-all duration-300 relative overflow-hidden group flex items-center gap-1"
@@ -376,7 +378,7 @@ export default function Navbar() {
 							{/* Glossy hover shine effect */}
 							<div className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
 							<div className="absolute inset-0 bg-linear-to-b from-white/20 to-transparent" />
-						</motion.button>
+						</motion.a>
 					</motion.div>
 
 					{/* Mobile Menu Button */}
@@ -564,7 +566,9 @@ export default function Navbar() {
 									</div>
 
 									{/* CTA Button */}
-									<button
+									<a
+									href='https://outlook.office.com/book/CraftXRTechStart@uofc.onmicrosoft.com/s/u6pglWHPnEmR-0ulQ2PC-w2?ismsaljsauthenabled'
+									target='_blank'
 										className="w-full px-8 py-3 bg-linear-to-r from-emerald-500 to-teal-500 rounded-lg text-white font-semibold transition-all duration-300 relative overflow-hidden group flex items-center justify-center gap-1"
 										onClick={() => setMobileMenuOpen(false)}
 									>
@@ -600,7 +604,7 @@ export default function Navbar() {
 										{/* Glossy hover shine effect */}
 										<div className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
 										<div className="absolute inset-0 bg-linear-to-b from-white/20 to-transparent" />
-									</button>
+									</a>
 								</div>
 							</motion.div>
 						</>
