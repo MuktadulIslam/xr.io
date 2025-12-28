@@ -83,7 +83,7 @@ export default function NTSEvaluation() {
                     <p className="text-sm md:text-base lg:text-lg text-gray-300 max-w-3xl mx-auto">
                         An AI-evaluator for your non-technical skills.{' '}
                         <Link
-                            href="#learn-more"
+                            href="/product-features"
                             className="text-cyan-400 hover:text-cyan-300 transition-colors duration-300 underline decoration-cyan-400/50 hover:decoration-cyan-300 underline-offset-4"
                         >
                             Learn more...
