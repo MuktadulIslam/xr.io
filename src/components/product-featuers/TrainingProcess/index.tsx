@@ -6,13 +6,15 @@ import { useRef } from 'react';
 import ExperienceSituations from './ExperienceSituations';
 import EvaluateConduct from './EvaluateConduct';
 import ApplyFeedback from './ApplyFeedback';
+import Link from "next/link";
+import { HiSparkles } from 'react-icons/hi';
 
 export default function TrainingProcess() {
     const sectionRef = useRef(null);
     const isSectionInView = useInView(sectionRef, { once: true, margin: '-100px' });
 
     return (
-        <div className="relative min-h-screen bg-[#0a0a0a] py-12 lg:py-20 px-3 lg:px-6 overflow-hidden">
+        <div className="relative min-h-screen py-12 lg:py-20 px-3 lg:px-6 overflow-hidden z-10">
             <div className="max-container">
                 {/* Section Header */}
                 <motion.div
@@ -37,7 +39,7 @@ export default function TrainingProcess() {
                 <ExperienceSituations />
                 <div className="w-full h-auto flex justify-center py-5">
                     <motion.div
-                        animate={{ 
+                        animate={{
                             y: [10, -10, 10]
                         }}
                         transition={{
@@ -46,7 +48,7 @@ export default function TrainingProcess() {
                             ease: "easeInOut"
                         }}
                     >
-                        <MdOutlineKeyboardDoubleArrowDown className="text-cyan-400 size-11 sm:size-12 lg:size-20"/>
+                        <MdOutlineKeyboardDoubleArrowDown className="text-cyan-400 size-11 sm:size-12 lg:size-20" />
                     </motion.div>
                 </div>
 
@@ -54,7 +56,7 @@ export default function TrainingProcess() {
                 <EvaluateConduct />
                 <div className="w-full h-auto flex justify-center py-5">
                     <motion.div
-                        animate={{ 
+                        animate={{
                             y: [10, -10, 10]
                         }}
                         transition={{
@@ -63,12 +65,65 @@ export default function TrainingProcess() {
                             ease: "easeInOut"
                         }}
                     >
-                        <MdOutlineKeyboardDoubleArrowDown className="text-cyan-400 size-11 sm:size-12 lg:size-20"/>
+                        <MdOutlineKeyboardDoubleArrowDown className="text-cyan-400 size-11 sm:size-12 lg:size-20" />
                     </motion.div>
                 </div>
 
-                {/* Step 3: Apply Feedback - Enhanced with orbital animation */}                
+                {/* Step 3: Apply Feedback - Enhanced with orbital animation */}
                 <ApplyFeedback />
+
+                {/* Try EvalNTS NOW Button */}
+                <div className="relative group w-full pt-16 lg:pt-20 flex justify-center">
+
+                    <Link
+                        href="/selection-page"
+                        className="relative flex items-center gap-3 px-8 py-4 bg-linear-to-r from-emerald-500 via-teal-500 to-cyan-500 rounded-2xl text-white font-bold text-lg shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden"
+                    >
+                        {/* Animated background shine */}
+                        <motion.div
+                            animate={{
+                                x: ['-200%', '200%'],
+                            }}
+                            transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                repeatDelay: 1,
+                                ease: "easeInOut"
+                            }}
+                            className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent skew-x-12"
+                        />
+
+                        {/* Icon with rotation animation */}
+                        <motion.div
+                            animate={{
+                                rotate: [0, 360],
+                            }}
+                            transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "linear"
+                            }}
+                            className="relative z-10"
+                        >
+                            <HiSparkles className="w-6 h-6" />
+                        </motion.div>
+
+                        <span className="relative z-10">TRY EvalNTS NOW</span>
+
+                        {/* Arrow with bounce animation */}
+                        <motion.span
+                            className="relative z-10 text-2xl"
+                            animate={{ x: [0, 5, 0] }}
+                            transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
+                        >
+                            →
+                        </motion.span>
+
+                        {/* Glossy overlay */}
+                        <div className="absolute inset-0 bg-linear-to-b from-white/20 to-transparent rounded-2xl" />
+                    </Link>
+                </div>
+
             </div>
         </div>
     );

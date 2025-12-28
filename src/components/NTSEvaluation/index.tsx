@@ -73,7 +73,7 @@ function FeatureCard({ feature, index }: { feature: typeof evaluationFeatures[0]
 
 export default function NTSEvaluation() {
     return (
-        <section id="nts-evaluation" className="relative py-5 px-6 overflow-hidden mb-12 lg:mb-20">
+        <section id="nts-evaluation" className="relative py-5 px-6 overflow-hidden mb-12 lg:mb-20 z-10">
             <div className="max-container">
                 {/* Header Section */}
                 <div className="text-center mb-6 md:mb-10 lg:mb-12">
