@@ -102,7 +102,7 @@ export default function WavePattern() {
         <div ref={sectionRef} className="relative w-full h-auto">
 
             {/* Wave grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className=" sm:pt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 {competencyItems.map((item, index) => {
                     const col = index % 3;
                     const isMiddle = col === 1;
@@ -119,7 +119,7 @@ export default function WavePattern() {
                             }}
                             className={`group relative w-full h-60 mx-auto ${isMiddle ? 'lg:-translate-y-10' : ''}`}
                             style={{
-                                animation: `float${index} ${4 + index * 0.3}s ease-in-out infinite`,
+                                animation: `float-feedback ${4 + index * 0.3}s ease-in-out infinite`,
                                 animationDelay: `${index * 0.4}s`,
                             }}
                         >
@@ -156,17 +156,6 @@ export default function WavePattern() {
                                     <div className={`mt-2 h-1 w-20 bg-linear-to-r ${item.color.primary} rounded-full group-hover:w-full transition-all duration-300`} />
                                 </div>
                             </div>
-
-                            <style jsx>{`
-                                @keyframes float${index} {
-                                    0%, 100% {
-                                        transform: translateY(0);
-                                    }
-                                    50% {
-                                        transform: translateY(1rem);
-                                    }
-                                }
-                            `}</style>
                         </motion.div>
                     );
                 })}
