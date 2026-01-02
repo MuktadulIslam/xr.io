@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CraftXR - No-Code VR Development Platform",
+  title: "CraftXR",
   description: "Empower your teaching with immersive VR experiences. Create 3D simulations without coding, train students with realistic VR environments, and leverage AI-powered evaluation.",
 };
 

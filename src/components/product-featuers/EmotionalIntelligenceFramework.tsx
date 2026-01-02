@@ -64,12 +64,12 @@ function CompetencyCard({ competency }: { competency: typeof emotionalIntelligen
                     <div className="w-full h-24 absolute bottom-0 bg-linear-to-t from-[#0a0a0a] via-[#0a0a0a]/60 to-transparent"/>
 
                     {/* Read More Button - Slides up from bottom on hover */}
-                    <div className="absolute h-10 bottom-0 left-0 right-0 flex items-center justify-center pb-6">
+                    {/* <div className="absolute h-10 bottom-0 left-0 right-0 flex items-center justify-center pb-6">
                         <button className={`px-4 py-2 bg-linear-to-r ${competency.gradient} rounded-lg text-white font-semibold flex items-center gap-2 shadow-lg hover:shadow-xl transition-all duration-300 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0`}>
                             <span>Read More</span>
                             <HiArrowRight className="w-4 h-4" />
                         </button>
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* Content Section */}
