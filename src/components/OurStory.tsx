@@ -10,16 +10,16 @@ export default function OurStory() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="story" className="relative py-20 px-6 overflow-hidden">
+    <section id="story" className="relative py-5 px-3 lg:px-6 overflow-hidden mb-12 lg:mb-20">
       <div className="max-container">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-12 lg:gap-16 items-center">
           {/* Left side - Image */}
           <motion.div
             ref={ref}
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.8 }}
-            className="w-full h-auto"
+            transition={{ duration: 0.5 }}
+            className="z-10 w-full h-auto"
           >
             <Image
               src="/out_story2.png"
@@ -42,7 +42,7 @@ export default function OurStory() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <h2 className="text-5xl h-20 md:text-6xl font-bold bg-linear-to-r from-white to-emerald-300 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl h-12 md:h-16 lg:h-20 font-bold bg-linear-to-r from-white to-emerald-300 bg-clip-text text-transparent">
                 Our Story
               </h2>
             </motion.div>
@@ -51,7 +51,7 @@ export default function OurStory() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-lg text-gray-300 mb-6 leading-relaxed"
+              className="text-sm md:text-base lg:text-lg text-gray-300 mb-3 lg:mb-6 leading-relaxed max-lg:text-justify"
             >
               Our technical backgrounds taught us, sometimes the hard way, that{' '}
               <span className="text-emerald-400 font-semibold">non-technical skills matter just as much</span>, 
@@ -64,7 +64,7 @@ export default function OurStory() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-lg text-gray-300 leading-relaxed"
+              className="text-sm md:text-base lg:text-lg text-gray-300 leading-relaxed max-lg:text-justify"
             >
               As researchers, we didn't want our work to sit on a shelf. We wanted it to shape real lives, 
               create meaningful change, and contribute to a better world.{' '}
@@ -73,38 +73,19 @@ export default function OurStory() {
             </motion.p>
 
             {/* Decorative elements */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="mt-4 flex gap-4 flex-wrap"
-            >
+            <div className="mt-4 flex gap-2 lg:gap-4 flex-wrap">
               {['Empathy', 'Critical Thinking', 'Awareness', 'Decision Making'].map((skill, index) => (
                 <span
                   key={index}
-                  className="px-4 py-1.5 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-full text-emerald-300 text-sm border border-emerald-500/30"
+                  className="px-3 py-1 lg:px-4 lg:py-1.5 bg-linear-to-r from-emerald-500/20 to-teal-500/20 rounded-full text-emerald-300 text-xs lg:text-sm border border-emerald-500/30"
                 >
                   {skill}
                 </span>
               ))}
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
-
-      {/* Background decorations */}
-      <motion.div
-        className="absolute top-1/3 right-0 w-96 h-96 bg-gradient-to-l from-emerald-500/10 to-teal-500/10 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.2, 0.4, 0.2],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
     </section>
   );
 }

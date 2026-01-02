@@ -1,7 +1,8 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, easeIn } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { IoMdClose } from "react-icons/io";
 import Image from 'next/image';
 import {
 	HiSparkles,
@@ -22,6 +23,9 @@ import {
 } from 'react-icons/fa';
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import { PiVirtualRealityFill } from 'react-icons/pi';
+import { getReadEventIds } from '@/utils/eventStorage';
+import { getUnreadEventCount } from '@/config/events';
+import Link from 'next/link';
 
 const solutionsItems = [
 	{
@@ -29,28 +33,79 @@ const solutionsItems = [
 		description: 'AI-Evaluator for Non-technical Skills',
 		icon: HiSparkles,
 		href: '#',
+		gradient: 'from-purple-500 to-pink-500',
+		iconColor: 'text-purple-400',
+		iconBg: 'bg-purple-500/10',
 	},
 	{
 		title: 'No-Code VR',
 		description: 'Build VR experiences without coding',
 		icon: HiCube,
 		href: '#',
+		gradient: 'from-blue-500 to-cyan-500',
+		iconColor: 'text-blue-400',
+		iconBg: 'bg-blue-500/10',
 	},
 	{
 		title: 'Realistic VR Simulations',
 		description: 'Immersive training environments',
 		icon: PiVirtualRealityFill,
 		href: '#',
+		gradient: 'from-teal-500 to-emerald-500',
+		iconColor: 'text-teal-400',
+		iconBg: 'bg-teal-500/10',
 	},
 ];
 
 const industriesItems = [
-	{ title: 'Healthcare', icon: FaHospital, href: '#' },
-	{ title: 'Education', icon: HiAcademicCap, href: '#' },
-	{ title: 'Corporate Leadership', icon: HiBriefcase, href: '#' },
-	{ title: 'Public Safety', icon: HiShieldCheck, href: '#' },
-	{ title: 'Sales and Customer Support', icon: HiChatBubbleLeftRight, href: '#' },
-	{ title: 'Adolescence Development', icon: HiUserGroup, href: '#' },
+	{
+		title: 'Healthcare',
+		icon: FaHospital,
+		href: '#',
+		gradient: 'from-cyan-500 to-blue-500',
+		iconColor: 'text-cyan-400',
+		iconBg: 'bg-cyan-500/10',
+	},
+	{
+		title: 'Education',
+		icon: HiAcademicCap,
+		href: '#',
+		gradient: 'from-blue-500 to-indigo-500',
+		iconColor: 'text-blue-400',
+		iconBg: 'bg-blue-500/10',
+	},
+	{
+		title: 'Corporate Leadership',
+		icon: HiBriefcase,
+		href: '#',
+		gradient: 'from-emerald-500 to-teal-500',
+		iconColor: 'text-emerald-400',
+		iconBg: 'bg-emerald-500/10',
+	},
+	{
+		title: 'Public Safety',
+		icon: HiShieldCheck,
+		href: '#',
+		gradient: 'from-teal-500 to-cyan-500',
+		iconColor: 'text-teal-400',
+		iconBg: 'bg-teal-500/10',
+	},
+	{
+		title: 'Sales & Customer Support',
+		icon: HiChatBubbleLeftRight,
+		href: '#',
+		gradient: 'from-purple-500 to-violet-500',
+		iconColor: 'text-purple-400',
+		iconBg: 'bg-purple-500/10',
+	},
+	{
+		title: 'Adolescence Development',
+		icon: HiUserGroup,
+		href: '#',
+		gradient: 'from-indigo-500 to-purple-500',
+		iconColor: 'text-indigo-400',
+		iconBg: 'bg-indigo-500/10',
+	},
 ];
 
 export default function Navbar() {
@@ -58,6 +113,7 @@ export default function Navbar() {
 	const [solutionsOpen, setSolutionsOpen] = useState(false);
 	const [industriesOpen, setIndustriesOpen] = useState(false);
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+	const [unreadEventsCount, setUnreadEventsCount] = useState(0);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -65,6 +121,37 @@ export default function Navbar() {
 		};
 		window.addEventListener('scroll', handleScroll);
 		return () => window.removeEventListener('scroll', handleScroll);
+	}, []);
+
+	// Update unread events count
+	useEffect(() => {
+		const updateUnreadCount = () => {
+			const readEvents = getReadEventIds();
+			const count = getUnreadEventCount(readEvents);
+			setUnreadEventsCount(count);
+		};
+
+		updateUnreadCount();
+
+		// Update count when returning to the page
+		const handleVisibilityChange = () => {
+			if (!document.hidden) {
+				updateUnreadCount();
+			}
+		};
+
+		document.addEventListener('visibilitychange', handleVisibilityChange);
+
+		// Also update on storage events (when user opens multiple tabs)
+		const handleStorage = () => {
+			updateUnreadCount();
+		};
+		window.addEventListener('storage', handleStorage);
+
+		return () => {
+			document.removeEventListener('visibilitychange', handleVisibilityChange);
+			window.removeEventListener('storage', handleStorage);
+		};
 	}, []);
 
 	// Close dropdowns when clicking outside
@@ -95,7 +182,7 @@ export default function Navbar() {
 		<motion.nav
 			initial={{ y: -100 }}
 			animate={{ y: 0 }}
-			transition={{ duration: 0.5 }}
+			transition={{ duration: 0.5, ease: 'easeIn' }}
 			className={`relative lg:fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
 				? 'bg-[#073030]/40 backdrop-blur-xl shadow-2xl shadow-emerald-500/10'
 				: 'bg-transparent'
@@ -143,7 +230,7 @@ export default function Navbar() {
 							onMouseLeave={() => setSolutionsOpen(false)}
 							onClick={(e) => e.stopPropagation()}
 						>
-							<button className="flex items-center gap-2 text-gray-200 hover:text-white transition-all duration-300 group px-4 py-2 relative overflow-hidden">
+							<button className={`flex items-center gap-2 hover:bg-white/10 ${solutionsOpen ? 'bg-white/10' : ''} rounded-lg text-gray-200 hover:text-white transition-all duration-300 group px-4 py-2 relative overflow-hidden`}>
 								<span className="relative z-10 font-medium">Our Solutions</span>
 								<motion.div
 									animate={{ rotate: solutionsOpen ? 180 : 0 }}
@@ -152,54 +239,64 @@ export default function Navbar() {
 								>
 									<HiChevronDown className="w-4 h-4" />
 								</motion.div>
-								<div className="absolute inset-0 bg-white/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-								<div className="absolute inset-0 bg-linear-to-r from-emerald-500/0 via-emerald-500/10 to-teal-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 							</button>
 
 							<AnimatePresence>
 								{solutionsOpen && (
 									<motion.div
-										initial={{ opacity: 0, y: 10, scale: 0.95 }}
+										initial={{ opacity: 0, y: -20, scale: 0.7 }}
 										animate={{ opacity: 1, y: 0, scale: 1 }}
-										exit={{ opacity: 0, y: 10, scale: 0.95 }}
+										exit={{ opacity: 0, y: -20, scale: 0.7 }}
 										transition={{ duration: 0.3, ease: "easeOut" }}
-										className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-96 bg-[#073030]/95 backdrop-blur-3xl border border-emerald-500/30 rounded-3xl shadow-2xl shadow-emerald-500/20 overflow-hidden"
+										className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[380px] bg-[#0a0a0a]/95 backdrop-blur-2xl border border-emerald-500/40 rounded-3xl shadow-2xl overflow-hidden"
 										style={{
-											boxShadow: '0 25px 50px -12px rgba(16, 185, 129, 0.25), 0 0 0 1px rgba(16, 185, 129, 0.1)',
+											boxShadow: '0 25px 50px -12px rgba(16, 185, 129, 0.3), 0 0 0 1px rgba(16, 185, 129, 0.1)',
 										}}
 									>
-										{/* Glossy overlay */}
-										<div className="absolute inset-0 bg-linear-to-b from-white/10 via-white/5 to-transparent pointer-events-none" />
-										<div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
-
-										<div className="p-2 space-y-2 relative z-10">
+										<div className="space-y-2 p-2 relative z-10">
 											{solutionsItems.map((item, index) => {
 												const IconComponent = item.icon;
 												return (
 													<a
 														key={index}
 														href={item.href}
-														className="flex items-start gap-4 p-2 rounded-2xl hover:bg-white/5 transition-all duration-300 group relative overflow-hidden border border-transparent hover:border-emerald-500/30"
+														className="group/item flex items-start gap-4 p-2 rounded-2xl hover:bg-white/5 transition-all duration-300 relative overflow-hidden border border-transparent hover:border-emerald-500/20"
 													>
-														{/* Glossy hover effect */}
-														<div className="absolute inset-0 bg-linear-to-br from-emerald-500/0 via-emerald-500/5 to-teal-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-														<div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/0 group-hover:via-white/20 to-transparent transition-all duration-500" />
+														{/* Hover gradient background */}
+														<div className={`absolute inset-0 bg-linear-to-br ${item.gradient} opacity-0 group-hover/item:opacity-5 transition-opacity duration-300`} />
 
-														<div className="text-emerald-400 group-hover:text-emerald-300 group-hover:scale-110 transition-all duration-300 relative z-10">
-															<IconComponent className="w-9 h-9 drop-shadow-lg" />
+														{/* Icon container with glow effect */}
+														<div className={`relative ${item.iconBg} p-3 rounded-xl border border-transparent group-hover/item:border-emerald-400/30 transition-all duration-300`}>
+															<div className={`absolute inset-0 ${item.iconBg} opacity-0 group-hover/item:opacity-100 blur-xl transition-opacity duration-300`} />
+															<IconComponent className={`relative w-7 h-7 ${item.iconColor} group-hover/item:scale-110 transition-transform duration-300`} />
 														</div>
+
 														<div className="flex-1 relative z-10">
-															<h4 className="font-semibold text-white group-hover:text-emerald-300 transition-colors duration-300 text-base">
+															<h4 className={`font-bold text-white text-lg`}>
 																{item.title}
 															</h4>
-															<p className="text-sm text-gray-400 group-hover:text-gray-300 mt-1.5 leading-relaxed">
+															<p className="text-sm text-gray-400 group-hover/item:text-gray-300 leading-relaxed">
 																{item.description}
 															</p>
 														</div>
+
+														{/* Arrow indicator */}
+														<motion.div
+															className="self-center opacity-0 group-hover/item:opacity-100 transition-opacity duration-300"
+															whileHover={{ x: 3 }}
+														>
+															<HiArrowRight className={`w-5 h-5 ${item.iconColor}`} />
+														</motion.div>
+
+														{/* Bottom shine effect on hover */}
+														<div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-emerald-400/0 group-hover/item:via-emerald-400/30 to-transparent transition-all duration-300" />
 													</a>
 												);
 											})}
 										</div>
+
+										{/* Bottom accent */}
+										<div className="h-1 bg-linear-to-r from-purple-500 via-emerald-500 to-cyan-500" />
 									</motion.div>
 								)}
 							</AnimatePresence>
@@ -212,7 +309,7 @@ export default function Navbar() {
 							onMouseLeave={() => setIndustriesOpen(false)}
 							onClick={(e) => e.stopPropagation()}
 						>
-							<button className="flex items-center gap-2 text-gray-200 hover:text-white transition-all duration-300 group px-4 py-2 relative overflow-hidden">
+							<button className={`flex items-center gap-2 hover:bg-white/10 ${industriesOpen ? 'bg-white/10' : ''} rounded-lg text-gray-200 hover:text-white transition-all duration-300 group px-4 py-2 relative overflow-hidden`}>
 								<span className="relative z-10 font-medium">Industries We Serve</span>
 								<motion.div
 									animate={{ rotate: industriesOpen ? 180 : 0 }}
@@ -221,26 +318,20 @@ export default function Navbar() {
 								>
 									<HiChevronDown className="w-4 h-4" />
 								</motion.div>
-								<div className="absolute inset-0 bg-white/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-								<div className="absolute inset-0 bg-linear-to-r from-teal-500/0 via-teal-500/10 to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 							</button>
 
 							<AnimatePresence>
 								{industriesOpen && (
 									<motion.div
-										initial={{ opacity: 0, y: 10, scale: 0.95 }}
+										initial={{ opacity: 0, y: -20, scale: 0.7 }}
 										animate={{ opacity: 1, y: 0, scale: 1 }}
-										exit={{ opacity: 0, y: 10, scale: 0.95 }}
+										exit={{ opacity: 0, y: -20, scale: 0.7 }}
 										transition={{ duration: 0.3, ease: "easeOut" }}
-										className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[500px] bg-[#073030]/95 backdrop-blur-3xl border border-emerald-500/30 rounded-3xl shadow-2xl shadow-emerald-500/20 overflow-hidden"
+										className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[450px] bg-[#0a0a0a]/95 backdrop-blur-2xl border border-emerald-500/20 rounded-3xl shadow-2xl overflow-hidden"
 										style={{
-											boxShadow: '0 25px 50px -12px rgba(16, 185, 129, 0.25), 0 0 0 1px rgba(16, 185, 129, 0.1)',
+											boxShadow: '0 25px 50px -12px rgba(16, 185, 129, 0.3), 0 0 0 1px rgba(16, 185, 129, 0.1)',
 										}}
 									>
-										{/* Glossy overlay */}
-										<div className="absolute inset-0 bg-linear-to-b from-white/10 via-white/5 to-transparent pointer-events-none" />
-										<div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
-
 										<div className="p-2 grid grid-cols-3 gap-2 relative z-10">
 											{industriesItems.map((item, index) => {
 												const IconComponent = item.icon;
@@ -248,22 +339,22 @@ export default function Navbar() {
 													<a
 														key={index}
 														href={item.href}
-														className="w-full aspect-3/2 flex flex-col items-center justify-center gap-2 p-3 rounded-2xl hover:bg-white/5 border border-transparent hover:border-emerald-500/30 transition-all duration-300 group text-center relative overflow-hidden"
+														className="group/item flex flex-col items-center justify-start gap-2 p-2 rounded-2xl hover:bg-white/5 border border-transparent hover:border-teal-500/20 transition-all duration-300 text-center relative overflow-hidden"
 													>
-														{/* Glossy hover effect */}
-														<div className="absolute inset-0 bg-linear-to-br from-emerald-500/0 to-teal-500/0 group-hover:from-emerald-500/10 group-hover:to-teal-500/10 transition-all duration-500" />
-														<div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/0 group-hover:via-white/20 to-transparent transition-all duration-500" />
-
-														<div className="text-emerald-400 group-hover:text-emerald-300 group-hover:scale-110 transition-all duration-300 relative z-10">
-															<IconComponent className="w-9 h-9 drop-shadow-lg" />
+														<div className={`relative ${item.iconBg} p-3 rounded-xl border border-transparent group-hover/item:border-teal-400/30 transition-all duration-300`}>
+															<IconComponent className={`relative w-8 h-8 ${item.iconColor} group-hover/item:scale-110 transition-transform duration-300`} />
 														</div>
-														<span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors duration-300 relative z-10">
+
+														<span className={`text-sm font-semibold text-gray-300 relative z-10`}>
 															{item.title}
 														</span>
 													</a>
 												);
 											})}
 										</div>
+
+										{/* Bottom accent */}
+										<div className="h-1 bg-linear-to-r from-cyan-500 via-emerald-500 to-purple-500" />
 									</motion.div>
 								)}
 							</AnimatePresence>
@@ -271,8 +362,8 @@ export default function Navbar() {
 
 						{/* Regular Links */}
 						<a
-							href="#about"
-							className="text-gray-200 hover:text-white transition-all duration-300 px-4 py-2 relative group overflow-hidden font-medium"
+							href="/about-us"
+							className="hover:bg-white/10 rounded-lg text-gray-200 hover:text-white transition-all duration-300 px-4 py-2 relative group overflow-hidden font-medium"
 						>
 							<span className="relative z-10">About Us</span>
 							<div className="absolute inset-0 bg-white/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -280,18 +371,38 @@ export default function Navbar() {
 						</a>
 						<a
 							href="#blog"
-							className="text-gray-200 hover:text-white transition-all duration-300 px-4 py-2 relative group overflow-hidden font-medium"
+							className="hover:bg-white/10 rounded-lg text-gray-200 hover:text-white transition-all duration-300 px-4 py-2 relative group overflow-hidden font-medium"
 						>
 							<span className="relative z-10">Blogs</span>
+						</a>
+
+						{/* Events Link with Badge */}
+						<a
+							href="/events"
+							id="navbar-events-button"
+							className="text-gray-200 hover:text-white transition-all duration-300 px-4 py-2 relative group font-medium"
+						>
+							<span className="relative z-10">Events</span>
 							<div className="absolute inset-0 bg-white/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-							<div className="absolute inset-0 bg-linear-to-r from-teal-500/0 via-teal-500/10 to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+							<div className="absolute inset-0 bg-linear-to-r from-blue-500/0 via-blue-500/10 to-cyan-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+							{/* Notification badge */}
+							{unreadEventsCount > 0 && (
+								<span
+									className="absolute top-1 right-0 h-4 px-1 rounded-sm flex items-center justify-center text-[9px] font-semibold text-white border border-red-500"
+								>
+									{unreadEventsCount}
+								</span>
+							)}
 						</a>
 
 						{/* CTA Button */}
-						<motion.button
+						<motion.a
+							href='https://outlook.office.com/book/CraftXRTechStart@uofc.onmicrosoft.com/s/u6pglWHPnEmR-0ulQ2PC-w2?ismsaljsauthenabled'
+							target='_blank'
 							whileHover={{ scale: 1.05, y: -2 }}
 							whileTap={{ scale: 0.95 }}
-							className="ml-10 px-5 py-3 bg-linear-to-r from-emerald-500 to-teal-500 rounded-xl text-white font-semibold transition-all duration-300 relative overflow-hidden group flex items-center gap-1"
+							className="ml-8 px-4 py-2 bg-linear-to-r from-emerald-500 to-teal-500 rounded-xl text-white font-semibold transition-all duration-300 relative overflow-hidden group flex items-center gap-1"
 						>
 							<motion.div
 								animate={{
@@ -325,7 +436,7 @@ export default function Navbar() {
 							{/* Glossy hover shine effect */}
 							<div className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
 							<div className="absolute inset-0 bg-linear-to-b from-white/20 to-transparent" />
-						</motion.button>
+						</motion.a>
 					</motion.div>
 
 					{/* Mobile Menu Button */}
@@ -353,15 +464,12 @@ export default function Navbar() {
 								transition={{ type: 'spring', damping: 25, stiffness: 200 }}
 								className="fixed top-0 right-0 bottom-0 w-full sm:w-96 bg-[#073030]/95 backdrop-blur-2xl border-l border-emerald-500/30 shadow-2xl shadow-emerald-500/20 z-50 lg:hidden overflow-y-auto"
 							>
-								{/* Glossy overlay effects */}
-								<div className="absolute inset-0 bg-linear-to-b from-white/5 to-transparent pointer-events-none" />
-								<div className="absolute inset-0 bg-linear-to-br from-emerald-500/10 via-transparent to-teal-500/10 pointer-events-none" />
 
-								<div className="relative z-10 p-6 space-y-6">
+								<div className="relative z-10 px-6 pb-6 pt-2 space-y-6">
 									{/* Close button */}
 									<div className="flex justify-between items-center mb-8">
 										<Image
-											src="/craftxr.png"
+											src="/images/logo/craftxr-ryan-white.png"
 											alt="CraftXR Logo"
 											width={120}
 											height={40}
@@ -369,9 +477,9 @@ export default function Navbar() {
 										/>
 										<button
 											onClick={() => setMobileMenuOpen(false)}
-											className="p-2 rounded-xl bg-white/5 hover:bg-white/10 transition-colors duration-300"
+											className="p-1 rounded-lg bg-white/5 hover:bg-white/10 transition-colors duration-300"
 										>
-											<FaTimes className="w-6 h-6 text-white" />
+											<IoMdClose className="w-7 h-7 font-light text-white" />
 										</button>
 									</div>
 
@@ -406,27 +514,29 @@ export default function Navbar() {
 													{solutionsItems.map((item, index) => {
 														const IconComponent = item.icon;
 														return (
-															<motion.a
+															<a
 																key={index}
 																href={item.href}
-																initial={{ opacity: 0, x: -20 }}
-																animate={{ opacity: 1, x: 0 }}
-																transition={{ delay: index * 0.1 }}
-																className="flex items-start gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-emerald-500/20 hover:border-emerald-500/40 transition-all duration-300 group"
+																className="flex items-start gap-4 p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-emerald-500/20 hover:border-emerald-500/40 transition-all duration-300 group/item relative overflow-hidden"
 																onClick={() => setMobileMenuOpen(false)}
 															>
-																<div className="text-emerald-400 group-hover:text-emerald-300 group-hover:scale-110 transition-all duration-300">
-																	<IconComponent className="w-6 h-6" />
+
+																{/* Icon with glow */}
+																<div className="relative">
+																	<div className={`relative ${item.iconBg} p-2 rounded-xl border border-transparent`}>
+																		<IconComponent className={`w-6 h-6 ${item.iconColor}`} />
+																	</div>
 																</div>
-																<div>
-																	<h4 className="font-semibold text-white text-sm mb-1">
+
+																<div className="flex-1 relative z-10">
+																	<h4 className='font-bold text-white'>
 																		{item.title}
 																	</h4>
 																	<p className="text-xs text-gray-400 leading-relaxed">
 																		{item.description}
 																	</p>
 																</div>
-															</motion.a>
+															</a>
 														);
 													})}
 												</motion.div>
@@ -463,27 +573,25 @@ export default function Navbar() {
 													animate={{ opacity: 1, height: 'auto' }}
 													exit={{ opacity: 0, height: 0 }}
 													transition={{ duration: 0.3 }}
-													className="grid grid-cols-2 gap-2 overflow-hidden"
+													className="grid grid-cols-2 gap-3 overflow-hidden"
 												>
 													{industriesItems.map((item, index) => {
 														const IconComponent = item.icon;
 														return (
-															<motion.a
+															<a
 																key={index}
 																href={item.href}
-																initial={{ opacity: 0, scale: 0.9 }}
-																animate={{ opacity: 1, scale: 1 }}
-																transition={{ delay: index * 0.05 }}
-																className="flex flex-col items-center justify-center gap-2 p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-teal-500/20 hover:border-teal-500/40 transition-all duration-300 group text-center"
+																className="flex flex-col items-center justify-center gap-3 p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-teal-500/20 hover:border-teal-500/40 transition-all duration-300 group/item text-center relative overflow-hidden"
 																onClick={() => setMobileMenuOpen(false)}
 															>
-																<div className="text-teal-400 group-hover:text-teal-300 group-hover:scale-110 transition-all duration-300">
-																	<IconComponent className="w-7 h-7" />
+																<div className={`relative ${item.iconBg} p-3 rounded-xl`}>
+																	<IconComponent className={`w-7 h-7 ${item.iconColor}`} />
 																</div>
-																<span className="text-xs font-medium text-gray-300 group-hover:text-white transition-colors duration-300">
+
+																<span className={`text-xs font-semibold text-gray-100 relative z-10`}>
 																	{item.title}
 																</span>
-															</motion.a>
+															</a>
 														);
 													})}
 												</motion.div>
@@ -496,33 +604,44 @@ export default function Navbar() {
 
 									{/* Regular Links */}
 									<div className="space-y-2">
-										<motion.a
-											href="#about"
-											whileTap={{ scale: 0.98 }}
-											className="flex items-center gap-3 p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-emerald-500/20 hover:border-emerald-500/40 text-white font-medium transition-all duration-300 group"
+										<a
+											href="/about-us"
+											className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-emerald-500/20 hover:border-emerald-500/40 text-white font-medium"
 											onClick={() => setMobileMenuOpen(false)}
 										>
-											<HiUserGroup className="w-5 h-5 text-emerald-400 group-hover:text-emerald-300 transition-colors duration-300" />
+											<HiUserGroup className="w-5 h-5 text-emerald-400" />
 											About Us
-											<HiArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-300" />
-										</motion.a>
+										</a>
 
-										<motion.a
+										<a
 											href="#blog"
-											whileTap={{ scale: 0.98 }}
-											className="flex items-center gap-3 p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-emerald-500/20 hover:border-emerald-500/40 text-white font-medium transition-all duration-300 group"
+											className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-emerald-500/20 hover:border-emerald-500/40 text-white font-medium"
 											onClick={() => setMobileMenuOpen(false)}
 										>
 											<HiChatBubbleLeftRight className="w-5 h-5 text-emerald-400 group-hover:text-emerald-300 transition-colors duration-300" />
 											Blogs
-											<HiArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-300" />
-										</motion.a>
+										</a>
+
+										<Link
+											href="/events"
+											className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-blue-500/20 hover:border-blue-500/40 text-white font-medium transition-all duration-300 group relative"
+											onClick={() => setMobileMenuOpen(false)}
+										>
+											<HiSparkles className="w-5 h-5 text-blue-400 group-hover:text-blue-300 transition-colors duration-300" />
+											Events
+											{unreadEventsCount > 0 && (
+												<span className="ml-auto px-2 py-0.5 rounded-sm text-sm font-semibold text-white border-2 border-red-500">
+													{unreadEventsCount}
+												</span>
+											)}
+										</Link>
 									</div>
 
 									{/* CTA Button */}
-									<motion.button
-										whileTap={{ scale: 0.95 }}
-										className="w-full px-8 py-3 bg-linear-to-r from-emerald-500 to-teal-500 rounded-xl text-white font-semibold transition-all duration-300 relative overflow-hidden group flex items-center justify-center gap-1"
+									<a
+										href='https://outlook.office.com/book/CraftXRTechStart@uofc.onmicrosoft.com/s/u6pglWHPnEmR-0ulQ2PC-w2?ismsaljsauthenabled'
+										target='_blank'
+										className="w-full px-8 py-3 bg-linear-to-r from-emerald-500 to-teal-500 rounded-lg text-white font-semibold transition-all duration-300 relative overflow-hidden group flex items-center justify-center gap-1"
 										onClick={() => setMobileMenuOpen(false)}
 									>
 										<motion.div
@@ -557,12 +676,7 @@ export default function Navbar() {
 										{/* Glossy hover shine effect */}
 										<div className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
 										<div className="absolute inset-0 bg-linear-to-b from-white/20 to-transparent" />
-									</motion.button>
-
-									{/* Footer text */}
-									<p className="text-center text-xs text-gray-500 mt-8">
-										© 2025 CraftXR. All rights reserved.
-									</p>
+									</a>
 								</div>
 							</motion.div>
 						</>
