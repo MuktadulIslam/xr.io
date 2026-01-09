@@ -30,18 +30,33 @@ export default function GetInTouch() {
 		e.preventDefault();
 		setIsSubmitting(true);
 
-		// Simulate form submission
-		await new Promise(resolve => setTimeout(resolve, 1500));
+		try {
+			const response = await fetch('/api/contact', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(formData),
+			});
 
-		console.log('Form submitted:', formData);
-		setIsSubmitting(false);
-		setSubmitSuccess(true);
+			const result = await response.json();
 
-		// Reset form after success
-		setTimeout(() => {
-			setFormData({ firstName: '', lastName: '', phone: '', email: '', message: '' });
-			setSubmitSuccess(false);
-		}, 3000);
+			if (response.ok) {
+				setIsSubmitting(false);
+				setSubmitSuccess(true);
+
+				// Reset form after success
+				setFormData({ firstName: '', lastName: '', phone: '', email: '', message: '' });
+			} else {
+				console.error('Failed to send message:', result.error);
+				setIsSubmitting(false);
+				alert('Failed to send message. Please try again.');
+			}
+		} catch (error) {
+			console.error('Error submitting form:', error);
+			setIsSubmitting(false);
+			alert('An error occurred. Please try again.');
+		}
 	};
 
 	return (
@@ -348,13 +363,25 @@ export default function GetInTouch() {
 										</div>
 									</div>
 
-									{/* Submit Button */}
-									<div className="">
+									{submitSuccess ? (
+										// Success Message
+										<motion.div
+											initial={{ opacity: 0, y: -10 }}
+											animate={{ opacity: 1, y: 0 }}
+											transition={{ duration: 0.5 }}
+											className="p-3 bg-emerald-500/10 border-2 border-emerald-500/30 rounded-lg lg:rounded-xl"
+										>
+											<p className="text-emerald-400 text-sm lg:text-base font-medium text-center">
+												Your message is sent successfully. Our team will contact you soon!
+											</p>
+										</motion.div>
+									) : (
+										// Submit Button
 										<motion.button
 											type="submit"
 											disabled={isSubmitting || submitSuccess}
-											whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-											whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+											whileHover={{ scale: isSubmitting || submitSuccess ? 1 : 1.02 }}
+											whileTap={{ scale: isSubmitting || submitSuccess ? 1 : 0.98 }}
 											className="w-full py-2 lg:py-4 bg-linear-to-r from-cyan-400 via-emerald-400 to-blue-400 rounded-lg lg:rounded-xl text-white font-bold text-base shadow-xl shadow-cyan-500/30 hover:shadow-cyan-500/50 transition-all duration-300 flex items-center justify-center gap-3 group/button relative overflow-hidden disabled:opacity-70 disabled:cursor-not-allowed"
 										>
 											{/* Animated background */}
@@ -404,7 +431,7 @@ export default function GetInTouch() {
 												/>
 											)}
 										</motion.button>
-									</div>
+									)}
 								</form>
 							</div>
 						</div>
