@@ -72,7 +72,7 @@ export default function TrainingProcess() {
                 {/* Step 3: Apply Feedback - Enhanced with orbital animation */}
                 <ApplyFeedback />
 
-                {/* Try EvalNTS NOW Button */}
+                {/* Try EI-Builder NOW Button */}
                 <div className="relative group w-full pt-16 lg:pt-20 flex justify-center">
 
                     <Link
@@ -108,7 +108,7 @@ export default function TrainingProcess() {
                             <HiSparkles className="w-6 h-6" />
                         </motion.div>
 
-                        <span className="relative z-10">TRY EvalNTS NOW</span>
+                        <span className="relative z-10">TRY EI-Builder NOW</span>
 
                         {/* Arrow with bounce animation */}
                         <motion.span

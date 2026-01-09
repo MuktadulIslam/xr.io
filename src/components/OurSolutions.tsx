@@ -5,7 +5,7 @@ import LottieComponent from './LottieComponent';
 
 const solutions = [
     {
-        name: 'EvalNTS: AI-Evaluator for Non-technical Skills',
+        name: 'EI-Builder: AI-Evaluator for Non-technical Skills',
         description: 'AI-evaluation for context-specific non-technical skills, providing valuable insights for personalized growth and team efficiency.',
         animation: technicalSkillsAnimation,
         gradient: 'from-purple-500 to-pink-500',

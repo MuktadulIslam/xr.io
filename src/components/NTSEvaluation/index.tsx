@@ -78,7 +78,7 @@ export default function NTSEvaluation() {
                 {/* Header Section */}
                 <div className="text-center mb-6 md:mb-10 lg:mb-12">
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold h-12 md:h-14 lg:h-18 bg-linear-to-r from-emerald-300 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
-                        Flagship Product: EvalNTS
+                        Flagship Product: EI-Builder
                     </h2>
                     <p className="text-sm md:text-base lg:text-lg text-gray-300 max-w-3xl mx-auto">
                         An AI-evaluator for your non-technical skills.{' '}
@@ -109,7 +109,7 @@ export default function NTSEvaluation() {
                 </div>
 
                 {/* Bottom CTA Link */}
-                <div className="text-center">
+                {/* <div className="text-center">
                     <Link
                         href="#how-it-works"
                         className="inline-flex items-center gap-2 text-lg font-semibold text-emerald-400 hover:text-emerald-300 transition-all duration-300 group"
@@ -120,7 +120,7 @@ export default function NTSEvaluation() {
                         </span>
                         <LeftToRightEaseInOut className="text-4xl" />
                     </Link>
-                </div>
+                </div> */}
             </div>
         </section>
     );

@@ -19,11 +19,11 @@ export default function EvalNTSHeroComponent() {
                         className="z-10 md:col-span-2"
                     >
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-emerald-300 via-teal-300 to-cyan-400 bg-clip-text text-transparent mb-4">
-                            EvalNTS: Redefining Learning and Evaluation
+                            EI-Builder: Redefining Learning and Evaluation
                         </h2>
 
                         <p className="text-sm md:text-base lg:text-lg text-gray-300 leading-relaxed max-lg:text-justify">
-                            EVALNTS revolutionizes the evaluation of emotional-intelligence (EI) based non-technical skills through an AI-driven Competency-based Framework. Our focus is on providing unbiased, actionable feedback to promote learner-specific growth and maximize team efficiency on specific EI competencies.
+                            EI-Builder revolutionizes the evaluation of emotional-intelligence (EI) based non-technical skills through an AI-driven Competency-based Framework. Our focus is on providing unbiased, actionable feedback to promote learner-specific growth and maximize team efficiency on specific EI competencies.
                         </p>
                     </motion.div>
 

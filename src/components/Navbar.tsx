@@ -29,10 +29,10 @@ import Link from 'next/link';
 
 const solutionsItems = [
 	{
-		title: 'EvalNTS',
+		title: 'EI-Builder',
 		description: 'AI-Evaluator for Non-technical Skills',
 		icon: HiSparkles,
-		href: '#',
+		href: '/product-features',
 		gradient: 'from-purple-500 to-pink-500',
 		iconColor: 'text-purple-400',
 		iconBg: 'bg-purple-500/10',
